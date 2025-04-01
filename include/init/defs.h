@@ -1,6 +1,4 @@
-#ifndef _DEFS__H
-#define _DEFS__H
-
+#pragma once
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -15,7 +13,13 @@ extern SDL_Window* gWindow;
 
 extern TTF_Font* gFont;
 
+enum HOMESCREEN {
+
+    START,
+    INSTRUCTION,
+    OPTIONS,
+    QUIT,
+    HOME
+};
+
 void logErrorAndExit(const char* msg, const char* error);
-
-#endif // _DEFS__H
-

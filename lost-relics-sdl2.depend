@@ -2,13 +2,14 @@
 1743532893 source:e:\lost-relics-sdl2\src\init\defs.cpp
 	"../../include/init/defs.h"
 
-1743532875 e:\lost-relics-sdl2\include\init\defs.h
+1743539599 e:\lost-relics-sdl2\include\init\defs.h
 	<SDL.h>
 	<SDL_ttf.h>
 
-1743533608 source:e:\lost-relics-sdl2\main.cpp
+1743540065 source:e:\lost-relics-sdl2\main.cpp
 	"include/init/defs.h"
 	"include/init/graphics.h"
+	"include/game_state/manager.h"
 
 1743533296 e:\lost-relics-sdl2\include\init\graphics.h
 	<SDL.h>
@@ -30,12 +31,46 @@
 1743533760 e:\lost-relics-sdl2\include\init\timer.h
 	<SDL.h>
 
-1743535563 source:e:\lost-relics-sdl2\src\animation\animation.cpp
+1743535837 source:e:\lost-relics-sdl2\src\animation\animation.cpp
 	<SDL_image.h>
 	"../../include/init/defs.h"
 	"../../include/animation/animation.h"
 
-1743535745 e:\lost-relics-sdl2\include\animation\animation.h
+1743540173 e:\lost-relics-sdl2\include\animation\animation.h
 	<SDL.h>
 	<string>
+
+1743539025 source:e:\lost-relics-sdl2\src\game_state\home_screen.cpp
+	"../../include/game_state/home_screen.h"
+
+1743539002 e:\lost-relics-sdl2\include\game_state\home_screen.h
+	"../init/defs.h"
+	"../init/graphics.h"
+	<string>
+	<vector>
+
+1743539280 source:e:\lost-relics-sdl2\src\game_state\instruction_screen.cpp
+	"../../include/init/defs.h"
+	"../../include/game_state/instruction_screen.h"
+
+1743539423 e:\lost-relics-sdl2\include\game_state\instruction_screen.h
+	"../init/graphics.h"
+
+1743539497 source:e:\lost-relics-sdl2\src\game_state\quit_screen.cpp
+	"../../include/init/defs.h"
+	"../../include/game_state/quit_screen.h"
+
+1743539414 e:\lost-relics-sdl2\include\game_state\quit_screen.h
+	"../init/graphics.h"
+
+1743539879 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
+	<SDL.h>
+	"../../include/init/defs.h"
+	"../../include/init/timer.h"
+	"../../include/game_state/manager.h"
+
+1743539547 e:\lost-relics-sdl2\include\game_state\manager.h
+	"home_screen.h"
+	"instruction_screen.h"
+	"quit_screen.h"
 

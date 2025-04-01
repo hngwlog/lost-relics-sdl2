@@ -32,7 +32,29 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="assets/fonts/brownie_stencil.ttf" />
+		<Unit filename="assets/fonts/cowboy_adventure.ttf" />
+		<Unit filename="assets/images/background/background.png" />
+		<Unit filename="assets/images/background/home_screen.jpg" />
+		<Unit filename="assets/images/background/tutorial.png" />
+		<Unit filename="assets/images/icon/icon.jpg" />
+		<Unit filename="include/animation/animation.h" />
+		<Unit filename="include/game_state/home_screen.h" />
+		<Unit filename="include/game_state/instruction_screen.h" />
+		<Unit filename="include/game_state/manager.h" />
+		<Unit filename="include/game_state/quit_screen.h" />
+		<Unit filename="include/init/defs.h" />
+		<Unit filename="include/init/graphics.h" />
+		<Unit filename="include/init/timer.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/animation/animation.cpp" />
+		<Unit filename="src/game_state/home_screen.cpp" />
+		<Unit filename="src/game_state/instruction_screen.cpp" />
+		<Unit filename="src/game_state/manager.cpp" />
+		<Unit filename="src/game_state/quit_screen.cpp" />
+		<Unit filename="src/init/defs.cpp" />
+		<Unit filename="src/init/graphics.cpp" />
+		<Unit filename="src/init/timer.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -1,6 +1,4 @@
-#ifndef _ANIMATION__H
-#define _ANIMATION__H
-
+#pragma once
 #include <SDL.h>
 #include <string>
 
@@ -38,5 +36,3 @@ private:
     bool facingRight = true;
     bool animationDone = false;
 };
-
-#endif // _ANIMATION__H
