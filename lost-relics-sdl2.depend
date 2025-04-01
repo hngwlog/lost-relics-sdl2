@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1743532893 source:e:\lost-relics-sdl2\src\init\defs.cpp
+	"../../include/init/defs.h"
+
+1743532875 e:\lost-relics-sdl2\include\init\defs.h
+	<SDL.h>
+	<SDL_ttf.h>
+
+1743533608 source:e:\lost-relics-sdl2\main.cpp
+	"include/init/defs.h"
+	"include/init/graphics.h"
+
+1743533296 e:\lost-relics-sdl2\include\init\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+
+1743533466 source:e:\lost-relics-sdl2\src\init\graphics.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	<iostream>
+	"../../include/init/defs.h"
+	"../../include/init/graphics.h"
+
+1743533795 source:e:\lost-relics-sdl2\src\init\timer.cpp
+	"../../include/init/timer.h"
+
+1743533760 e:\lost-relics-sdl2\include\init\timer.h
+	<SDL.h>
+
+1743535563 source:e:\lost-relics-sdl2\src\animation\animation.cpp
+	<SDL_image.h>
+	"../../include/init/defs.h"
+	"../../include/animation/animation.h"
+
+1743535745 e:\lost-relics-sdl2\include\animation\animation.h
+	<SDL.h>
+	<string>
+
