@@ -227,11 +227,16 @@ int loadQuit() {
                 return QUIT;
             }
             else if (event.type == SDL_KEYDOWN) {
+                if (event.key.keysym.sym == SDLK_y) {
+                    delete quitScreen;
 
-                delete quitScreen;
+                    return - 1;
+                }
+                if (event.key.keysym.sym == SDLK_n) {
+                    delete quitScreen;
 
-                if (event.key.keysym.sym == SDLK_y) return - 1;
-                if (event.key.keysym.sym == SDLK_n) return HOME;
+                    return HOME;
+                }
             }
         }
 

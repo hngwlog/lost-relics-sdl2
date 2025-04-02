@@ -63,7 +63,7 @@
 1743539414 e:\lost-relics-sdl2\include\game_state\quit_screen.h
 	"../init/graphics.h"
 
-1743603697 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
+1743604931 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
 	<SDL.h>
 	"../../include/init/defs.h"
 	"../../include/init/timer.h"
@@ -80,7 +80,9 @@
 	<string>
 	<vector>
 
-1743603887 source:e:\lost-relics-sdl2\src\game_state\level_select_screen.cpp
+1743604836 source:e:\lost-relics-sdl2\src\game_state\level_select_screen.cpp
 	"../../include/init/defs.h"
 	"../../include/game_state/level_select_screen.h"
+
+1743604574 source:e:\lost-relics-sdl2\src\game_objects\game_object.cpp
 

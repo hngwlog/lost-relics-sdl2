@@ -76,7 +76,7 @@ int LevelSelectScreen::update(const int& deltaTime) {
 
         /** Highlight selected level */
         std::string selectedLabel = "> " + levels[currentState].label;
-        levels[currentState].texture->loadFromText(selectedLabel, {255, 255, 255});
+        levels[currentState].texture->loadFromText(selectedLabel, {255, 0, 0});
         levels[currentState].texture->setPosition({100, levels[currentState].yPos});
     }
 
