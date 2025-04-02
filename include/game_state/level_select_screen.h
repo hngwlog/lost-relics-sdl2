@@ -27,9 +27,9 @@ public:
     void render();
 
 private:
-    Texture* background;
-    Texture* title;
-    Texture* quit;
+    Texture* background = nullptr;
+    Texture* title = nullptr;
+    Texture* quit = nullptr;
     std::vector<Level> levels;
     int unlockedLevels = 1;
     int currentState = - 1;

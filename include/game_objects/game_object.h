@@ -5,8 +5,10 @@
 
 class GameObject {
 public:
-    GameObject(std::string path, std::pair<int, int> objSize, std::pair<int, int> position, std::pair<int, int> frameCount, std::vector<std::pair<int, int>> frameLimit);
+    GameObject();
     ~GameObject();
+
+    void init(std::string path, std::pair<int, int> objSize, std::pair<int, int> position, std::pair<int, int> frameCount, std::vector<std::pair<int, int>> frameLimit);
 
     bool isChecked = false;
 
@@ -15,8 +17,8 @@ public:
     void render();
 
 private:
-    Texture* body;
-    Animation* animation;
+    Texture* body = nullptr;
+    Animation* animation = nullptr;
     std::pair<int, int> objSize;
     std::pair<int, int> objPosition;
     std::pair<int, int> frameCount;

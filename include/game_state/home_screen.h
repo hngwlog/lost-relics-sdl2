@@ -24,8 +24,8 @@ public:
     void render();
 
 private:
-    Texture* gameName;
-    Texture* background;
+    Texture* gameName = nullptr;
+    Texture* background = nullptr;
     std::vector<MenuItem> menuItems;
 
     int currentState = - 1;

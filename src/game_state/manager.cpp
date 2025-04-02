@@ -2,6 +2,7 @@
 #include "../../include/init/defs.h"
 #include "../../include/init/timer.h"
 #include "../../include/game_state/manager.h"
+#include "../../include/game_state/play.h"
 
 HomeScreen* homeScreen;
 LevelSelectScreen* levelSelectScreen;
@@ -117,8 +118,12 @@ int loadGame() {
         }
         else if (state == - 1) levelSelectScreen->render();
         else {
-            playLevel(state);
-            state = - 1;
+            state = playLevel(state);
+            if (state == - 2) {
+                delete levelSelectScreen;
+
+                return HOME;
+            }
         }
 
         SDL_RenderPresent(gRenderer);
@@ -137,6 +142,96 @@ int loadGame() {
 }
 
 int playLevel(int level) {
+
+    Game* game = new Game();
+    game->init(level);
+
+    bool quit = false;
+    SDL_Event event;
+
+    /** The frames per second timer */
+    Timer fpsTimer;
+
+    /** The frames per second cap timer */
+    Timer capTimer;
+
+    /** Start counting frames per second */
+    fpsTimer.start();
+
+    int startTime = 0, currentTime, deltaTime;
+
+    int state = 0;
+
+    while (!quit) {
+
+        /** Start cap timer */
+        capTimer.start();
+        currentTime = fpsTimer.getTicks();
+
+        deltaTime = std::min(currentTime - startTime, SCREEN_TICKS_PER_FRAME);
+        startTime = currentTime;
+
+        SDL_RenderClear(gRenderer);
+
+        while (SDL_PollEvent(&event) != 0) {
+            if (event.type == SDL_QUIT) {
+                quit = true;
+                return QUIT;
+            }
+            else if ((state == 0 || state == - 2) && event.type == SDL_KEYDOWN) {
+                if (state == 0 && event.key.keysym.sym == SDLK_ESCAPE) state = - 2;
+                else if (state == - 2 && event.key.keysym.sym == SDLK_RETURN) state = 0;
+            }
+        }
+
+        if (state == 0) game->update(deltaTime);
+
+        if (state == - 2) game->renderPause();
+        else {
+            state = game->getGameState();
+            if (state < 0) {
+                game->renderLose();
+                const Uint8* currentKeyState = SDL_GetKeyboardState(nullptr);
+                if (currentKeyState[SDL_SCANCODE_R]) {
+                    delete game;
+
+                    return - 1;
+                }
+                else if (currentKeyState[SDL_SCANCODE_H]) {
+                    delete game;
+
+                    return - 2;
+                }
+            }
+            else if (state == 0) game->render();
+            else {
+                game->renderWin();
+                levelSelectScreen->unlockLevel(level);
+                const Uint8* currentKeyState = SDL_GetKeyboardState(nullptr);
+                if (currentKeyState[SDL_SCANCODE_R]) {
+                    delete game;
+
+                    return - 1;
+                }
+                else if (currentKeyState[SDL_SCANCODE_H]) {
+                    delete game;
+
+                    return - 2;
+                }
+            }
+        }
+
+        SDL_RenderPresent(gRenderer);
+
+        /** If frame finished early */
+        int frameTicks = capTimer.getTicks();
+        if (frameTicks < SCREEN_TICKS_PER_FRAME) {
+            /** Wait remaining time */
+            SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
+        }
+    }
+
+    delete game;
 
     return - 1;
 }

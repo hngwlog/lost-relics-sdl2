@@ -41,7 +41,7 @@ public:
 private:
     int width, height;
     SDL_Rect rect;
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;
 };
 
 #endif // _GRAPHICS__H

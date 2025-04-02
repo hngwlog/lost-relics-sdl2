@@ -85,7 +85,6 @@ int LevelSelectScreen::update(const int& deltaTime) {
 
 void LevelSelectScreen::unlockLevel(int level) {
 
-    level--;
     if (isLevelUnlocked[level] == false) {
         isLevelUnlocked[level] = true;
         unlockedLevels++;

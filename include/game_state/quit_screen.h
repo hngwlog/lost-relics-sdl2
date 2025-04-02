@@ -11,6 +11,6 @@ public:
     void render();
 
 private:
-    Texture* background;
-    Texture* quit;
+    Texture* background = nullptr;
+    Texture* quit = nullptr;
 };

@@ -1,7 +1,19 @@
 #include "../../include/game_objects/game_object.h"
 
-GameObject::GameObject(std::string path, std::pair<int, int> size, std::pair<int, int> position, std::pair<int, int> frame, std::vector<std::pair<int, int>> limit)
-    : objSize(size), objPosition(position), frameCount(frame), frameLimit(limit) {
+GameObject::GameObject() {}
+
+GameObject::~GameObject() {
+
+    delete body;
+    delete animation;
+}
+
+void GameObject::init(std::string path, std::pair<int, int> size, std::pair<int, int> position, std::pair<int, int> frame, std::vector<std::pair<int, int>> limit) {
+
+    objSize = size;
+    objPosition = position;
+    frameCount = frame;
+    frameLimit = limit;
 
     body = new Texture();
     body->loadFromFile(path.c_str());
@@ -9,12 +21,6 @@ GameObject::GameObject(std::string path, std::pair<int, int> size, std::pair<int
     body->setPosition({objPosition});
 
     animation = new Animation(path.c_str(), frameCount, 100);
-}
-
-GameObject::~GameObject() {
-
-    delete body;
-    delete animation;
 }
 
 void GameObject::update(const int& deltaTime) {
@@ -39,7 +45,7 @@ void GameObject::update(const int& deltaTime) {
 
 void GameObject::render() {
 
-    if (done) return ;
+    if (done || body == nullptr) return ;
 
     body->render(false, animation->getCurrentFrameRect());
 }
