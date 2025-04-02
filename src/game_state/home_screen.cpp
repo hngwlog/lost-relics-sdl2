@@ -37,9 +37,9 @@ void HomeScreen::init() {
         item.texture = new Texture();
         item.texture->loadFromText(label, {255, 255, 255});
         item.yPos = yStart;
-        yStart += 50;
         menuItems.push_back(item);
         menuItems.back().texture->setPosition({(SCREEN_WIDTH - menuItems.back().texture->getWidth()) / 2, menuItems.back().yPos});
+        yStart += 50;
     }
 }
 
