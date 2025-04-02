@@ -4,8 +4,8 @@ HomeScreen::HomeScreen() {}
 
 HomeScreen::~HomeScreen() {
 
-    delete gameName;
     delete background;
+    delete gameName;
 
     for (auto& menuItem: menuItems) delete menuItem.texture;
 }
@@ -53,8 +53,7 @@ void HomeScreen::render() {
 
 int HomeScreen::update(const int& deltaTime) {
 
-    /** Reset all menu items */
-    for (auto& menuItem: menuItems) menuItem.texture->loadFromText(menuItem.label, {255, 255, 255});
+    int previousState = currentState;
 
     const Uint8* currentKeyState = SDL_GetKeyboardState(nullptr);
 
@@ -69,11 +68,15 @@ int HomeScreen::update(const int& deltaTime) {
     currentState = (currentState + (int)menuItems.size()) % (int)menuItems.size();
     timeDelay -= deltaTime;
 
-    /** Highlight selected menu item */
-    std::string selectedLabel = "> " + menuItems[currentState].label;
-    menuItems[currentState].texture->loadFromText(selectedLabel, {255, 255, 255});
-    menuItems[currentState].texture->setPosition({(SCREEN_WIDTH - menuItems[currentState].texture->getWidth()) / 2 + 10, menuItems[currentState].yPos});
+    if (currentState != previousState) {
+        /** Reset previous selected label */
+        if (previousState != - 1) menuItems[previousState].texture->loadFromText(menuItems[previousState].label, {255, 255, 255});
 
+        /** Highlight selected menu item */
+        std::string selectedLabel = "> " + menuItems[currentState].label;
+        menuItems[currentState].texture->loadFromText(selectedLabel, {255, 255, 255});
+        menuItems[currentState].texture->setPosition({(SCREEN_WIDTH - menuItems[currentState].texture->getWidth()) / 2 + 10, menuItems[currentState].yPos});
+    }
     return - 1;
 }
 

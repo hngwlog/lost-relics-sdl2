@@ -48,7 +48,11 @@ int loadHomeScreen() {
         }
 
         if (state == - 1) homeScreen->render();
-        else return state;
+        else {
+            delete homeScreen;
+
+            return state;
+        }
 
         SDL_RenderPresent(gRenderer);
 
@@ -59,6 +63,8 @@ int loadHomeScreen() {
             SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
         }
     }
+
+    delete homeScreen;
 
     return - 1;
 }
@@ -96,7 +102,11 @@ int loadInstruction() {
                 quit = true;
                 return QUIT;
             }
-            else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN) return HOME;
+            else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN) {
+                delete instructionScreen;
+
+                return HOME;
+            }
         }
 
         instructionScreen->render();
@@ -110,6 +120,9 @@ int loadInstruction() {
             SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
         }
     }
+
+    delete instructionScreen;
+
     return - 1;
 }
 
@@ -147,6 +160,9 @@ int loadQuit() {
                 return QUIT;
             }
             else if (event.type == SDL_KEYDOWN) {
+
+                delete quitScreen;
+
                 if (event.key.keysym.sym == SDLK_y) return - 1;
                 if (event.key.keysym.sym == SDLK_n) return HOME;
             }
@@ -163,6 +179,8 @@ int loadQuit() {
             SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
         }
     }
+
+    delete quitScreen;
 
     return - 1;
 }

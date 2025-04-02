@@ -6,10 +6,11 @@
 	<SDL.h>
 	<SDL_ttf.h>
 
-1743540065 source:e:\lost-relics-sdl2\main.cpp
+1743585802 source:e:\lost-relics-sdl2\main.cpp
 	"include/init/defs.h"
 	"include/init/graphics.h"
 	"include/game_state/manager.h"
+	<iostream>
 
 1743533296 e:\lost-relics-sdl2\include\init\graphics.h
 	<SDL.h>
@@ -40,10 +41,10 @@
 	<SDL.h>
 	<string>
 
-1743539025 source:e:\lost-relics-sdl2\src\game_state\home_screen.cpp
+1743586671 source:e:\lost-relics-sdl2\src\game_state\home_screen.cpp
 	"../../include/game_state/home_screen.h"
 
-1743539002 e:\lost-relics-sdl2\include\game_state\home_screen.h
+1743586446 e:\lost-relics-sdl2\include\game_state\home_screen.h
 	"../init/defs.h"
 	"../init/graphics.h"
 	<string>
@@ -63,7 +64,7 @@
 1743539414 e:\lost-relics-sdl2\include\game_state\quit_screen.h
 	"../init/graphics.h"
 
-1743539879 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
+1743586845 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
 	<SDL.h>
 	"../../include/init/defs.h"
 	"../../include/init/timer.h"
