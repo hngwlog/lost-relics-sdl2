@@ -21,18 +21,18 @@ int Collision::check(Collision* other, bool push) {
     float overlapX = (thisRect.w + otherRect.w) * 0.5f - abs(deltaX);
     float overlapY = (thisRect.h + otherRect.h) * 0.5f - abs(deltaY);
 
-    if (overlapX >= 0 && overlapY >= 0) {
+    if (overlapX > 0 && overlapY > 0) {
 
         /** Prefer the less intersecting part */
         if (overlapX < overlapY) {
             if (deltaX > 0) {
                 /** this -> other */
-                if (push) other->move(overlapX, 0);
+                if (push) other->move(thisRect.x + thisRect.w - otherRect.x, 0);
                 return COLLISION_STATE::RIGHT;
             }
             else {
                 /** other -> this */
-                if (push) other->move(- overlapX, 0);
+                if (push) other->move(- (otherRect.x + otherRect.w - thisRect.x), 0);
                 return COLLISION_STATE::LEFT;
             }
         }
@@ -42,7 +42,7 @@ int Collision::check(Collision* other, bool push) {
                     this
                     other
                 */
-                if (push) other->move(0, overlapY);
+                if (push) other->move(0, thisRect.y + thisRect.h - otherRect.y);
                 return COLLISION_STATE::DOWN;
             }
             else {
@@ -50,12 +50,20 @@ int Collision::check(Collision* other, bool push) {
                     other
                     this
                 */
-                if (push) other->move(0, - overlapY);
+                if (push) other->move(0, - (otherRect.y + otherRect.h - thisRect.y));
                 return COLLISION_STATE::TOP;
             }
         }
     }
 
+    if (overlapX == 0 && overlapY > 0) {
+        if (deltaX > 0) return COLLISION_STATE::MRIGHT;
+        return COLLISION_STATE::MLEFT;
+    }
+    if (overlapX > 0 && overlapY == 0) {
+        if (deltaY > 0) return COLLISION_STATE::MDOWN;
+        return COLLISION_STATE::MTOP;
+    }
     return COLLISION_STATE::NONE;
 }
 
@@ -66,7 +74,7 @@ SDL_FRect Collision::getRect() const {
     return {pos.first, pos.second, size.first, size.second};
 }
 
-void Collision::move(const float& x, const float& y) {
+void Collision::move(const int& x, const int& y) {
 
     body->move({int(x), int(y)});
 }

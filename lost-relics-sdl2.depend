@@ -31,12 +31,12 @@
 1743533760 e:\lost-relics-sdl2\include\init\timer.h
 	<SDL.h>
 
-1743535837 source:e:\lost-relics-sdl2\src\animation\animation.cpp
+1743702152 source:e:\lost-relics-sdl2\src\animation\animation.cpp
 	<SDL_image.h>
 	"../../include/init/defs.h"
 	"../../include/animation/animation.h"
 
-1743540173 e:\lost-relics-sdl2\include\animation\animation.h
+1743702135 e:\lost-relics-sdl2\include\animation\animation.h
 	<SDL.h>
 	<string>
 
@@ -63,7 +63,7 @@
 1743613376 e:\lost-relics-sdl2\include\game_state\quit_screen.h
 	"../init/graphics.h"
 
-1743613522 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
+1743703878 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
 	<SDL.h>
 	"../../include/init/defs.h"
 	"../../include/init/timer.h"
@@ -85,12 +85,13 @@
 	"../../include/init/defs.h"
 	"../../include/game_state/level_select_screen.h"
 
-1743609285 source:e:\lost-relics-sdl2\src\game_objects\game_object.cpp
+1743702846 source:e:\lost-relics-sdl2\src\game_objects\game_object.cpp
 	"../../include/game_objects/game_object.h"
 
-1743613134 e:\lost-relics-sdl2\include\game_objects\game_object.h
+1743702859 e:\lost-relics-sdl2\include\game_objects\game_object.h
 	"../init/graphics.h"
 	"../animation/animation.h"
+	"../animation/collision.h"
 	<vector>
 
 1743612808 source:e:\lost-relics-sdl2\src\game_state\play.cpp
@@ -101,19 +102,31 @@
 	"../init/graphics.h"
 	"../game_objects/map.h"
 
-1743613283 e:\lost-relics-sdl2\include\game_objects\map.h
+1743705965 e:\lost-relics-sdl2\include\game_objects\map.h
 	"../init/defs.h"
 	"game_object.h"
+	"player.h"
+	"../animation/collision.h"
 	<fstream>
 
-1743610469 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
+1743705803 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
 	"../../include/game_objects/map.h"
 
-1743628332 source:e:\lost-relics-sdl2\src\animation\collision.cpp
+1743705717 source:e:\lost-relics-sdl2\src\animation\collision.cpp
 	"../../include/animation/collision.h"
 	"../../include/init/defs.h"
 
-1743628238 e:\lost-relics-sdl2\include\animation\collision.h
+1743705704 e:\lost-relics-sdl2\include\animation\collision.h
 	<SDL.h>
 	"../init/graphics.h"
+
+1743705810 source:e:\lost-relics-sdl2\src\game_objects\player.cpp
+	"../../include/game_objects/player.h"
+	"../../include/init/defs.h"
+
+1743703982 e:\lost-relics-sdl2\include\game_objects\player.h
+	"../init/graphics.h"
+	"../animation/animation.h"
+	"../animation/collision.h"
+	<vector>
 

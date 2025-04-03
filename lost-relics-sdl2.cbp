@@ -38,6 +38,12 @@
 		<Unit filename="assets/images/background/background.png" />
 		<Unit filename="assets/images/background/home_screen.jpg" />
 		<Unit filename="assets/images/background/tutorial.png" />
+		<Unit filename="assets/images/hero/hero.png" />
+		<Unit filename="assets/images/hud/health_menu_hud.png" />
+		<Unit filename="assets/images/hud/hearts_hud.png" />
+		<Unit filename="assets/images/hud/lifes_icon.png" />
+		<Unit filename="assets/images/hud/lost_hearts.png" />
+		<Unit filename="assets/images/hud/select_icon.png" />
 		<Unit filename="assets/images/icon/icon.jpg" />
 		<Unit filename="assets/images/tiles/-1.png" />
 		<Unit filename="assets/images/tiles/-2.png" />
@@ -71,6 +77,7 @@
 		<Unit filename="include/animation/collision.h" />
 		<Unit filename="include/game_objects/game_object.h" />
 		<Unit filename="include/game_objects/map.h" />
+		<Unit filename="include/game_objects/player.h" />
 		<Unit filename="include/game_state/home_screen.h" />
 		<Unit filename="include/game_state/instruction_screen.h" />
 		<Unit filename="include/game_state/level_select_screen.h" />
@@ -85,6 +92,7 @@
 		<Unit filename="src/animation/collision.cpp" />
 		<Unit filename="src/game_objects/game_object.cpp" />
 		<Unit filename="src/game_objects/map.cpp" />
+		<Unit filename="src/game_objects/player.cpp" />
 		<Unit filename="src/game_state/home_screen.cpp" />
 		<Unit filename="src/game_state/instruction_screen.cpp" />
 		<Unit filename="src/game_state/level_select_screen.cpp" />

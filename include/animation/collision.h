@@ -8,7 +8,11 @@ enum COLLISION_STATE {
     LEFT,
     RIGHT,
     TOP,
-    DOWN
+    DOWN,
+    MLEFT,
+    MRIGHT,
+    MTOP,
+    MDOWN
 };
 
 class Collision {
@@ -20,7 +24,7 @@ public:
 
     SDL_FRect getRect() const;
 
-    void move(const float& x, const float& y);
+    void move(const int& x, const int& y);
 
     void debugDraw();
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "../init/graphics.h"
 #include "../animation/animation.h"
+#include "../animation/collision.h"
 #include <vector>
 
 class GameObject {
@@ -16,9 +17,13 @@ public:
 
     void render();
 
+    Collision* getBox();
+
 private:
     Texture* body = nullptr;
     Animation* animation = nullptr;
+    Collision* box = nullptr;
+
     std::pair<int, int> objSize;
     std::pair<int, int> objPosition;
     std::pair<int, int> frameCount;

@@ -6,6 +6,7 @@ GameObject::~GameObject() {
 
     delete body;
     delete animation;
+    delete box;
 }
 
 void GameObject::init(std::string path, std::pair<int, int> size, std::pair<int, int> position, std::pair<int, int> frame, std::vector<std::pair<int, int>> limit) {
@@ -21,6 +22,8 @@ void GameObject::init(std::string path, std::pair<int, int> size, std::pair<int,
     body->setPosition({objPosition});
 
     animation = new Animation(path.c_str(), frameCount, 100);
+
+    box = new Collision(body);
 }
 
 void GameObject::update(const int& deltaTime) {
@@ -48,4 +51,9 @@ void GameObject::render() {
     if (done || body == nullptr) return ;
 
     body->render(false, animation->getCurrentFrameRect());
+}
+
+Collision* GameObject::getBox() {
+
+    return box;
 }

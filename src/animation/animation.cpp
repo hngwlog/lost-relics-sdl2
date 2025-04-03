@@ -85,6 +85,11 @@ void Animation::setFlip(bool flip) {
     facingRight = flip;
 }
 
+bool Animation::getFlip() {
+
+    return facingRight;
+}
+
 std::pair<int, int> Animation::getCurrentFrame() {
 
     return currentFrame;

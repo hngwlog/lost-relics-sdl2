@@ -17,6 +17,8 @@ public:
 
     void setFlip(bool flip);
 
+    bool getFlip();
+
     std::pair<int, int> getCurrentFrame();
 
     SDL_Rect* getCurrentFrameRect();
