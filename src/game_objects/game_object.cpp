@@ -57,3 +57,8 @@ Collision* GameObject::getBox() {
 
     return box;
 }
+
+std::pair<int, int> GameObject::getPosition() {
+
+    return objPosition;
+}

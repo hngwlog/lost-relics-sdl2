@@ -19,6 +19,8 @@ public:
 
     Collision* getBox();
 
+    std::pair<int, int> getPosition();
+
 private:
     Texture* body = nullptr;
     Animation* animation = nullptr;

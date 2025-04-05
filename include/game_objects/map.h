@@ -4,6 +4,7 @@
 #include "player.h"
 #include "../animation/collision.h"
 #include <fstream>
+#include <vector>
 
 const int GROUND_SIZE = 50;
 const int CNT_BLOCK_X = SCREEN_WIDTH / GROUND_SIZE;
@@ -31,7 +32,15 @@ private:
     Texture* healthMenuHud = nullptr;
     Texture* lifesIcon = nullptr;
 
+    bool newCoinCollected = false;
+    int coinsCollected = 0;
+    Texture* coinHud = nullptr;
+    Texture* coinsCount = nullptr;
+
     Player* player = nullptr;
+
+    int totalCoins;
+    std::vector<GameObject*> coins;
 
     int state = 0;
 };
