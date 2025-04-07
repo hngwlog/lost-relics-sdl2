@@ -13,6 +13,8 @@ public:
     bool isHeadBlocked = false;
 
     bool isTakingHit = false;
+    int health = 4;
+    int healDelay = 3000;
 
     void handleInput(const int& deltaTime);
 
@@ -45,8 +47,6 @@ private:
     int dashCooldown = 0;
 
     bool doneLostHeart = false;
-    int health = 4;
-    int healDelay = 3000;
 
     std::pair<int, int> velocity = {0, 0};
     float speed = 200;

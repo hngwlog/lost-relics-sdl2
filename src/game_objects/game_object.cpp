@@ -22,16 +22,19 @@ void GameObject::init(std::string path, std::pair<int, int> size, std::pair<int,
     body->setPosition({objPosition});
 
     animation = new Animation(path.c_str(), frameCount, 100);
+    animation->initFrameLimit(frameLimit[0]);
 
     box = new Collision(body);
 }
 
 void GameObject::update(const int& deltaTime) {
 
+    accumulatedTime += deltaTime;
+    if (accumulatedTime < delayTime) return ;
     if (!isChecked && animation->getCurrentFrame().second != 0) {
         animation->update(deltaTime, true);
         if (animation->isAnimationDone()) {
-            animation->initFrameLimit({frameLimit[0].first, 0});
+            animation->initFrameLimit(frameLimit[0]);
             checkedAnimationPlayed = false;
         }
         done = false;
@@ -39,11 +42,21 @@ void GameObject::update(const int& deltaTime) {
     }
     if (done) return ;
     if (isChecked && !checkedAnimationPlayed) {
-        if (frameCount.second > 1) animation->initFrameLimit({frameLimit[1].first, 1});
+        if (frameCount.second > 1) animation->initFrameLimit(frameLimit[1]);
         checkedAnimationPlayed = true;
     }
     animation->update(deltaTime);
     if (animation->isAnimationDone() && checkedAnimationPlayed) done = true;
+    if (animation->isAnimationDone()) accumulatedTime = 0;
+}
+
+void GameObject::applyPhysics(const int& deltaTime) {
+
+    if (isGrounded) return ;
+
+    float dt = deltaTime / 1000.f;
+
+    body->move({0, int(gravity * dt)});
 }
 
 void GameObject::render() {
@@ -61,4 +74,14 @@ Collision* GameObject::getBox() {
 std::pair<int, int> GameObject::getPosition() {
 
     return objPosition;
+}
+
+void GameObject::setDelayTime(const int& newDelayTime) {
+
+    delayTime = newDelayTime;
+}
+
+bool GameObject::getObjState() {
+
+    return (accumulatedTime >= delayTime);
 }

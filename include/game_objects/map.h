@@ -16,10 +16,21 @@ public:
     ~Map();
 
     void loadMap(std::string path);
-
-    void update(const int& deltaTime);
+    void loadBackground(std::ifstream& mapFile);
+    void loadPlayer(std::ifstream& mapFile);
+    void loadGameObject(std::ifstream& mapFile);
 
     void checkAllCollision();
+    void playerAndTiles();
+    void playerAndCoins();
+    void playerAndTraps();
+    void playerAndStones();
+    void stonesAndTiles();
+    void buttonsAndStones();
+    void playerAndWalls();
+    void playerAndDoor();
+
+    void update(const int& deltaTime);
 
     void render();
 
@@ -41,6 +52,16 @@ private:
 
     int totalCoins;
     std::vector<GameObject*> coins;
+
+    int totalTraps;
+    std::vector<GameObject*> traps;
+
+    int totalWalls;
+    std::vector<GameObject*> buttons;
+    std::vector<GameObject*> stones;
+    std::vector<GameObject*> walls;
+
+    GameObject* door = nullptr;
 
     int state = 0;
 };

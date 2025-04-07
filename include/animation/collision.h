@@ -24,7 +24,7 @@ public:
 
     SDL_FRect getRect() const;
 
-    void move(const int& x, const int& y);
+    void move(const float& x, const float& y);
 
     void debugDraw();
 

@@ -9,11 +9,19 @@ public:
     GameObject();
     ~GameObject();
 
+    Animation* animation = nullptr;
+
     void init(std::string path, std::pair<int, int> objSize, std::pair<int, int> position, std::pair<int, int> frameCount, std::vector<std::pair<int, int>> frameLimit);
 
     bool isChecked = false;
+    bool isGrounded = false;
+    bool isGroundLeft = false;
+    bool isGroundRight = false;
+    bool done = false;
 
     void update(const int& deltaTime);
+
+    void applyPhysics(const int& deltaTime);
 
     void render();
 
@@ -21,9 +29,12 @@ public:
 
     std::pair<int, int> getPosition();
 
+    void setDelayTime(const int& newDelayTime);
+
+    bool getObjState();
+
 private:
     Texture* body = nullptr;
-    Animation* animation = nullptr;
     Collision* box = nullptr;
 
     std::pair<int, int> objSize;
@@ -32,5 +43,9 @@ private:
     std::vector<std::pair<int, int>> frameLimit;
 
     bool checkedAnimationPlayed = false;
-    bool done = false;
+
+    int accumulatedTime = 0;
+    int delayTime = 0;
+
+    float gravity = 981;
 };

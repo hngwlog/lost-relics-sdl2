@@ -96,10 +96,16 @@ void Player::applyPhysics(const int& deltaTime) {
 
     float dt = deltaTime / 1000.0f;
 
-    if (!isGrounded) velocity.second += gravity * dt;
+    if (isTakingHit) {
+        velocity = {0, 0};
 
-    if (isHeadBlocked && velocity.second < 0) velocity.second = gravity * dt;
+        if (!isGrounded) velocity.second += gravity * dt;
+    }
+    else {
+        if (!isGrounded) velocity.second += gravity * dt;
 
+        if (isHeadBlocked && velocity.second < 0) velocity.second = gravity * dt;
+    }
     body->move({int(velocity.first * dt), int(velocity.second * dt)});
 }
 
@@ -124,12 +130,11 @@ void Player::updateAnimation() {
 void Player::takeHit(const int& deltaTime) {
 
     if (healDelay == 3000) {
+        animation->initFrameLimit({3, 8});
         lostHeart->setPosition(healthBar[health - 1]->getPosition());
         lostHeartAnimation->initFrameLimit({5, 0});
         doneLostHeart = false;
     }
-
-    animation->setFrameLimit({3, 8});
 
     healDelay -= deltaTime;
 
@@ -139,7 +144,7 @@ void Player::takeHit(const int& deltaTime) {
         isTakingHit = false;
         healDelay = 3000;
 
-        animation->setFrameLimit({4, 5});
+        animation->initFrameLimit({4, 5});
     }
 
     lostHeartAnimation->update(deltaTime);

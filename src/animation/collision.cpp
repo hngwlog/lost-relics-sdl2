@@ -27,12 +27,12 @@ int Collision::check(Collision* other, bool push) {
         if (overlapX < overlapY) {
             if (deltaX > 0) {
                 /** this -> other */
-                if (push) other->move(thisRect.x + thisRect.w - otherRect.x, 0);
+                if (push) other->move(overlapX, 0);
                 return COLLISION_STATE::RIGHT;
             }
             else {
                 /** other -> this */
-                if (push) other->move(- (otherRect.x + otherRect.w - thisRect.x), 0);
+                if (push) other->move(- overlapX, 0);
                 return COLLISION_STATE::LEFT;
             }
         }
@@ -42,7 +42,7 @@ int Collision::check(Collision* other, bool push) {
                     this
                     other
                 */
-                if (push) other->move(0, thisRect.y + thisRect.h - otherRect.y);
+                if (push) other->move(0, overlapY);
                 return COLLISION_STATE::DOWN;
             }
             else {
@@ -50,7 +50,7 @@ int Collision::check(Collision* other, bool push) {
                     other
                     this
                 */
-                if (push) other->move(0, - (otherRect.y + otherRect.h - thisRect.y));
+                if (push) other->move(0, - overlapY);
                 return COLLISION_STATE::TOP;
             }
         }
@@ -74,7 +74,7 @@ SDL_FRect Collision::getRect() const {
     return {pos.first, pos.second, size.first, size.second};
 }
 
-void Collision::move(const int& x, const int& y) {
+void Collision::move(const float& x, const float& y) {
 
     body->move({int(x), int(y)});
 }
