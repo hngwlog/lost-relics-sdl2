@@ -36,7 +36,7 @@
 	"../../include/init/defs.h"
 	"../../include/animation/animation.h"
 
-1744019262 e:\lost-relics-sdl2\include\animation\animation.h
+1744046722 e:\lost-relics-sdl2\include\animation\animation.h
 	<SDL.h>
 	<string>
 
@@ -85,7 +85,7 @@
 	"../../include/init/defs.h"
 	"../../include/game_state/level_select_screen.h"
 
-1744044156 source:e:\lost-relics-sdl2\src\game_objects\game_object.cpp
+1744045411 source:e:\lost-relics-sdl2\src\game_objects\game_object.cpp
 	"../../include/game_objects/game_object.h"
 
 1744044645 e:\lost-relics-sdl2\include\game_objects\game_object.h
@@ -102,17 +102,17 @@
 	"../init/graphics.h"
 	"../game_objects/map.h"
 
-1744045196 e:\lost-relics-sdl2\include\game_objects\map.h
+1744048571 e:\lost-relics-sdl2\include\game_objects\map.h
 	"../init/defs.h"
 	"game_object.h"
 	"player.h"
 	"../animation/collision.h"
+	"enemy.h"
 	<fstream>
 	<vector>
 
-1744045176 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
+1744047942 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
 	"../../include/game_objects/map.h"
-	<iostream>
 
 1744035917 source:e:\lost-relics-sdl2\src\animation\collision.cpp
 	"../../include/animation/collision.h"
@@ -122,19 +122,27 @@
 	<SDL.h>
 	"../init/graphics.h"
 
-1744043797 source:e:\lost-relics-sdl2\src\game_objects\player.cpp
+1744046961 source:e:\lost-relics-sdl2\src\game_objects\player.cpp
 	"../../include/game_objects/player.h"
 	"../../include/init/defs.h"
 
-1744021182 e:\lost-relics-sdl2\include\game_objects\player.h
+1744048699 e:\lost-relics-sdl2\include\game_objects\player.h
 	"../init/graphics.h"
 	"../animation/animation.h"
 	"../animation/collision.h"
 	<vector>
 
-1744045122 source:e:\lost-relics-sdl2\src\game_objects\map_loader.cpp
+1744047886 source:e:\lost-relics-sdl2\src\game_objects\map_loader.cpp
 	"../../include/game_objects/map.h"
 
 1744045238 source:e:\lost-relics-sdl2\src\game_objects\map_collision.cpp
 	"../../include/game_objects/map.h"
+
+1744047594 source:e:\lost-relics-sdl2\src\game_objects\enemy.cpp
+	"../../include/game_objects/enemy.h"
+
+1744047200 e:\lost-relics-sdl2\include\game_objects\enemy.h
+	"../init/graphics.h"
+	"../animation/animation.h"
+	"../animation/collision.h"
 

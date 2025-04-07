@@ -8,6 +8,7 @@ void Map::loadMap(std::string path) {
     loadBackground(mapFile);
     loadPlayer(mapFile);
     loadGameObject(mapFile);
+    loadEnemy(mapFile);
 
     mapFile.close();
 }
@@ -105,4 +106,16 @@ void Map::loadGameObject(std::ifstream& mapFile) {
     mapFile >> x >> y;
     door = new GameObject();
     door->init("assets/images/game_objects/door.png", {60, 80}, {x, y}, {1, 1}, {{1, 0}});
+}
+
+void Map::loadEnemy(std::ifstream& mapFile) {
+
+    mapFile >> totalEnemies;
+    for (int i = 0; i < totalEnemies; i++) {
+        int x, y, type;
+        bool faceRight;
+        mapFile >> x >> y >> type >> faceRight;
+        Enemy* enemy = new Enemy({x, y}, type, faceRight);
+        enemies.push_back(enemy);
+    }
 }

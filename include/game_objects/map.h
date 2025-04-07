@@ -3,6 +3,7 @@
 #include "game_object.h"
 #include "player.h"
 #include "../animation/collision.h"
+#include "enemy.h"
 #include <fstream>
 #include <vector>
 
@@ -19,6 +20,7 @@ public:
     void loadBackground(std::ifstream& mapFile);
     void loadPlayer(std::ifstream& mapFile);
     void loadGameObject(std::ifstream& mapFile);
+    void loadEnemy(std::ifstream& mapFile);
 
     void checkAllCollision();
     void playerAndTiles();
@@ -29,6 +31,10 @@ public:
     void buttonsAndStones();
     void playerAndWalls();
     void playerAndDoor();
+    void enemiesAndTiles();
+    void enemiesAndTraps();
+    void enemiesAndWalls();
+    void enemiesAndPlayer();
 
     void update(const int& deltaTime);
 
@@ -62,6 +68,9 @@ private:
     std::vector<GameObject*> walls;
 
     GameObject* door = nullptr;
+
+    int totalEnemies;
+    std::vector<Enemy*> enemies;
 
     int state = 0;
 };

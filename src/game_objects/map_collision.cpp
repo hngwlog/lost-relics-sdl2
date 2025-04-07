@@ -102,6 +102,55 @@ void Map::playerAndDoor() {
     if (player->getBox()->check(door->getBox(), false) != COLLISION_STATE::NONE) state = 1;
 }
 
+void Map::enemiesAndTiles() {
+
+    for (auto& enemy: enemies) {
+        if (enemy->death) continue;
+        enemy->isGrounded = false;
+        for (int i = 0; i < CNT_BLOCK_Y; i++) {
+            for (int j = 0; j < CNT_BLOCK_X; j++) {
+                if (tiles[i][j].getBox() == nullptr) continue;
+                int state = tiles[i][j].getBox()->check(enemy->getBox(), true);
+                if (state == COLLISION_STATE::TOP || state == COLLISION_STATE::MTOP) enemy->isGrounded = true;
+                else if (state == COLLISION_STATE::LEFT || state == COLLISION_STATE::MLEFT) enemy->isMovingRight = false;
+                else if (state == COLLISION_STATE::RIGHT || state == COLLISION_STATE::MRIGHT) enemy->isMovingRight = true;
+            }
+        }
+    }
+}
+
+void Map::enemiesAndTraps() {
+
+    for (auto& enemy: enemies) {
+        if (enemy->hit) continue;
+        for (auto& trap: traps) if (trap->getObjState() && trap->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) enemy->takeHit();
+    }
+}
+
+void Map::enemiesAndWalls() {
+
+    for (auto& enemy: enemies) {
+        if (enemy->hit) continue;
+        for (auto& wall: walls) {
+            if (wall->done) continue;
+            int state = wall->getBox()->check(enemy->getBox(), true);
+            if (state == COLLISION_STATE::LEFT || state == COLLISION_STATE::MLEFT) enemy->isMovingRight = false;
+            else if (state == COLLISION_STATE::RIGHT || state == COLLISION_STATE::MRIGHT) enemy->isMovingRight = true;
+        }
+    }
+}
+
+void Map::enemiesAndPlayer() {
+
+    for (auto& enemy: enemies) {
+        if (enemy->hit) continue;
+        if (player->attack->isAttacking) {
+            if (player->attack->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) enemy->takeHit();
+        }
+        else if (player->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) player->isTakingHit = true;
+    }
+}
+
 void Map::checkAllCollision() {
 
     playerAndTiles();
@@ -112,4 +161,8 @@ void Map::checkAllCollision() {
     buttonsAndStones();
     playerAndWalls();
     playerAndDoor();
+    enemiesAndTiles();
+    enemiesAndTraps();
+    enemiesAndWalls();
+    enemiesAndPlayer();
 }

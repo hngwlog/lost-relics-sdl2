@@ -4,6 +4,24 @@
 #include "../animation/collision.h"
 #include <vector>
 
+class Attack {
+public:
+    Attack();
+    ~Attack();
+
+    Texture* body;
+    Animation* animation;
+
+    int isAttacking = 0;
+    int hitCooldown = 0;
+
+    Collision* getBox();
+
+private:
+    Collision* box;
+
+};
+
 class Player {
 public:
     Player(std::pair<int, int> startPosition, bool faceRight);
@@ -15,6 +33,8 @@ public:
     bool isTakingHit = false;
     int health = 4;
     int healDelay = 3000;
+
+    Attack* attack = nullptr;
 
     void handleInput(const int& deltaTime);
 
@@ -33,10 +53,10 @@ public:
     Collision* getBox();
 
 private:
-    Texture* body;
-    Animation* animation;
-    Texture* lostHeart;
-    Animation* lostHeartAnimation;
+    Texture* body = nullptr;
+    Animation* animation = nullptr;
+    Texture* lostHeart = nullptr;
+    Animation* lostHeartAnimation = nullptr;
     std::vector<Texture*> healthBar;
     Collision* box;
 

@@ -7,6 +7,8 @@ public:
     Animation(const std::string& filePath, std::pair<int, int> frameCount, int switchTime);
     ~Animation();
 
+    int accumulatedTime = 0;
+
     void update(const int& deltaTime, bool flip = false);
 
     void initFrameLimit(std::pair<int, int> newFrameLimit);
@@ -34,7 +36,6 @@ private:
     std::pair<int, int> frameLimit;
     int frameWidth, frameHeight;
     std::pair<int, int> currentFrame;
-    int accumulatedTime = 0;
     bool facingRight = true;
     bool animationDone = false;
 };

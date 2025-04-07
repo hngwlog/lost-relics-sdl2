@@ -1,6 +1,30 @@
 #include "../../include/game_objects/player.h"
 #include "../../include/init/defs.h"
 
+Attack::Attack() {
+
+    body = new Texture();
+    body->loadFromFile("assets/images/hero/hero.png");
+    body->setSize({50, 50});
+
+    animation = new Animation("assets/images/hero/hero.png", {8, 15}, 50);
+    animation->initFrameLimit({5, 14});
+
+    box = new Collision(body);
+}
+
+Attack::~Attack() {
+
+    delete body;
+    delete animation;
+    delete box;
+}
+
+Collision* Attack::getBox() {
+
+    return box;
+}
+
 Player::Player(std::pair<int, int> startPosition, bool faceRight)
     : position(startPosition), facingRight(faceRight) {
 
@@ -11,6 +35,8 @@ Player::Player(std::pair<int, int> startPosition, bool faceRight)
 
     animation = new Animation("assets/images/hero/hero.png", {8, 15}, 100);
     animation->initFrameLimit({3, 6});
+
+    attack = new Attack();
 
     lostHeart = new Texture();
     lostHeart->loadFromFile("assets/images/hud/lost_hearts.png");
@@ -35,6 +61,7 @@ Player::~Player() {
 
     delete body;
     delete animation;
+    delete attack;
     delete lostHeart;
     delete lostHeartAnimation;
     for (auto& health: healthBar) delete health;
@@ -54,6 +81,8 @@ void Player::handleInput(const int& deltaTime) {
     else {
         velocity.first = 0;
 
+        if (attack->isAttacking > 0) attack->isAttacking--;
+
         if (currentKeyState[SDL_SCANCODE_LEFT]) {
             velocity.first -= speed;
             facingRight = false;
@@ -66,6 +95,11 @@ void Player::handleInput(const int& deltaTime) {
             velocity.second = jumpVelocity;
             isGrounded = false;
         }
+
+        if (currentKeyState[SDL_SCANCODE_A] && !attack->isAttacking && attack->hitCooldown <= 0) {
+            attack->hitCooldown = 2000;
+            attack->isAttacking = 16;
+        }
     }
     if (currentKeyState[SDL_SCANCODE_D] && !isDashing && dashCooldown <= 0) {
         dashCooldown = 1000;
@@ -74,6 +108,7 @@ void Player::handleInput(const int& deltaTime) {
     }
 
     dashCooldown -= deltaTime;
+    attack->hitCooldown -= deltaTime;
 }
 
 void Player::update(const int& deltaTime) {
@@ -83,6 +118,7 @@ void Player::update(const int& deltaTime) {
         applyPhysics(deltaTime);
         updateAnimation();
         animation->update(deltaTime);
+        attack->animation->update(deltaTime);
     }
     else {
         applyPhysics(deltaTime);
@@ -117,6 +153,14 @@ void Player::updateAnimation() {
             animation->setFrame({2, 8});
         }
     }
+    else if (attack->isAttacking) {
+        attack->body->setPosition({body->getPosition().first + (facingRight ? 50 : - 50), body->getPosition().second});
+        if (attack->isAttacking == 16) {
+            animation->initFrameLimit({4, 3});
+            attack->animation->initFrameLimit({5, 14});
+            attack->animation->accumulatedTime = 0;
+        }
+    }
     else if (!isGrounded) {
         if (velocity.second < 0) animation->setFrameLimit({3, 7}); /** Jump */
         else animation->setFrameLimit({3, 6}); /** Fall */
@@ -125,6 +169,7 @@ void Player::updateAnimation() {
     else animation->setFrameLimit({4, 5}); /** Idle */
 
     animation->setFlip(facingRight);
+    attack->animation->setFlip(facingRight);
 }
 
 void Player::takeHit(const int& deltaTime) {
@@ -162,6 +207,8 @@ void Player::limitPosition() {
 void Player::render() {
 
     body->render(!animation->getFlip(), animation->getCurrentFrameRect());
+
+    if (attack->isAttacking) attack->body->render(!animation->getFlip(), attack->animation->getCurrentFrameRect());
 
     /** Render health bar */
     for (int i = 0; i < health - 1; i++) healthBar[i]->render(false);

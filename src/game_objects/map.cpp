@@ -22,6 +22,7 @@ Map::~Map() {
     for (auto& stone: stones) delete stone;
     for (auto& wall: walls) delete wall;
     delete door;
+    for (auto& enemy: enemies) delete enemy;
 }
 
 void Map::update(const int& deltaTime) {
@@ -32,6 +33,7 @@ void Map::update(const int& deltaTime) {
     for (auto& trap: traps) trap->update(deltaTime);
     for (auto& stone: stones) stone->applyPhysics(deltaTime);
     for (auto& wall: walls) wall->update(deltaTime);
+    for (auto& enemy: enemies) enemy->update(deltaTime);
 
     if (!player->health) state = - 1;
 }
@@ -74,6 +76,8 @@ void Map::render() {
     for (auto& wall: walls) wall->render();
 
     door->render();
+
+    for (auto& enemy: enemies) enemy->render();
 }
 
 int Map::getState() {
