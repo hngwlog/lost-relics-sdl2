@@ -92,16 +92,22 @@ void Player::handleInput(const int& deltaTime) {
             facingRight = true;
         }
         if (currentKeyState[SDL_SCANCODE_SPACE] && isGrounded) {
+            jumpSound->play(0);
+
             velocity.second = jumpVelocity;
             isGrounded = false;
         }
 
         if (currentKeyState[SDL_SCANCODE_A] && !attack->isAttacking && attack->hitCooldown <= 0) {
+            attackSound->play(0);
+
             attack->hitCooldown = 2000;
             attack->isAttacking = 16;
         }
     }
     if (currentKeyState[SDL_SCANCODE_D] && !isDashing && dashCooldown <= 0) {
+        dashSound->play(0);
+
         dashCooldown = 1000;
         isDashing = 8;
         velocity = {0, 0};

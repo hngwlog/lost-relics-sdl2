@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="assets/data/high_score/high_score.txt" />
 		<Unit filename="assets/data/map/1.txt" />
 		<Unit filename="assets/fonts/karmatic_arcade.ttf" />
 		<Unit filename="assets/fonts/matrix_mono.ttf" />
@@ -92,6 +93,15 @@
 		<Unit filename="assets/images/tiles/7.png" />
 		<Unit filename="assets/images/tiles/8.png" />
 		<Unit filename="assets/images/tiles/9.png" />
+		<Unit filename="assets/sounds/attack.wav" />
+		<Unit filename="assets/sounds/coin.wav" />
+		<Unit filename="assets/sounds/dash.wav" />
+		<Unit filename="assets/sounds/game_music.mp3" />
+		<Unit filename="assets/sounds/hit_enemy.wav" />
+		<Unit filename="assets/sounds/jump.wav" />
+		<Unit filename="assets/sounds/lose.wav" />
+		<Unit filename="assets/sounds/select.mp3" />
+		<Unit filename="assets/sounds/win.wav" />
 		<Unit filename="include/animation/animation.h" />
 		<Unit filename="include/animation/collision.h" />
 		<Unit filename="include/game_objects/enemy.h" />
@@ -106,6 +116,7 @@
 		<Unit filename="include/game_state/quit_screen.h" />
 		<Unit filename="include/init/defs.h" />
 		<Unit filename="include/init/graphics.h" />
+		<Unit filename="include/init/music_manager.h" />
 		<Unit filename="include/init/timer.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/animation/animation.cpp" />
@@ -124,6 +135,7 @@
 		<Unit filename="src/game_state/quit_screen.cpp" />
 		<Unit filename="src/init/defs.cpp" />
 		<Unit filename="src/init/graphics.cpp" />
+		<Unit filename="src/init/music_manager.cpp" />
 		<Unit filename="src/init/timer.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

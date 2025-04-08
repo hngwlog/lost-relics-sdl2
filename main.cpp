@@ -5,6 +5,7 @@
 int main(int argc, char* argv[]) {
 
     initSDL();
+    initMusic();
     int type = HOME;
     while (type != - 1) {
         if (type == HOME) type = loadHomeScreen();

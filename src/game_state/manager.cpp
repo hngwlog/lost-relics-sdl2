@@ -143,6 +143,9 @@ int loadGame() {
 
 int playLevel(int level) {
 
+    selectSound->stop();
+    gameMusic->play();
+
     Game* game = new Game();
     game->init(level);
 
@@ -176,6 +179,9 @@ int playLevel(int level) {
         while (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) {
                 quit = true;
+
+                gameMusic->stop();
+
                 return QUIT;
             }
             else if ((state == 0 || state == - 2) && event.type == SDL_KEYDOWN) {
@@ -190,6 +196,9 @@ int playLevel(int level) {
         else {
             state = game->getGameState();
             if (state < 0) {
+                gameMusic->stop();
+                loseSound->play(0);
+
                 int score = game->renderLose();
                 score = 0;
                 levelSelectScreen->levels[level].score = std::max(levelSelectScreen->levels[level].score, score);
@@ -207,6 +216,9 @@ int playLevel(int level) {
             }
             else if (state == 0) game->render();
             else {
+                gameMusic->stop();
+                winSound->play(0);
+
                 int score = game->renderWin();
                 levelSelectScreen->levels[level].score = std::max(levelSelectScreen->levels[level].score, score);
                 levelSelectScreen->unlockLevel(level);
@@ -268,6 +280,8 @@ int loadInstruction() {
                 return QUIT;
             }
             else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN) {
+                selectSound->play(0);
+
                 delete instructionScreen;
 
                 return HOME;
@@ -321,16 +335,22 @@ int loadQuit() {
 
         while (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) {
+                selectSound->play(0);
+
                 quit = true;
                 return QUIT;
             }
             else if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_y) {
+                    selectSound->play(0);
+
                     delete quitScreen;
 
                     return - 1;
                 }
                 if (event.key.keysym.sym == SDLK_n) {
+                    selectSound->play(0);
+
                     delete quitScreen;
 
                     return HOME;

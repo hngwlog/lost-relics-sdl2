@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include "music_manager.h"
 
 const int SCREEN_WIDTH = 1000;
 const int SCREEN_HEIGHT = 600;
@@ -12,6 +13,8 @@ extern SDL_Renderer* gRenderer;
 extern SDL_Window* gWindow;
 
 extern TTF_Font* gFont;
+
+extern MusicManager *gameMusic, *jumpSound, *coinSound, *dashSound, *attackSound, *selectSound, *hitEnemySound, *loseSound, *winSound;
 
 enum HOMESCREEN {
 

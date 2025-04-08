@@ -83,10 +83,26 @@ int LevelSelectScreen::update(const int& deltaTime) {
 
     if (timeDelay <= 0) {
         timeDelay = 200;
-        if (currentKeyState[SDL_SCANCODE_DOWN]) currentState++;
-        else if (currentKeyState[SDL_SCANCODE_UP]) currentState--;
-        else if (currentKeyState[SDL_SCANCODE_RETURN]) return currentState;
-        else if (currentKeyState[SDL_SCANCODE_ESCAPE]) return - 2;
+        if (currentKeyState[SDL_SCANCODE_DOWN]) {
+            selectSound->play(0);
+
+            currentState++;
+        }
+        else if (currentKeyState[SDL_SCANCODE_UP]) {
+            selectSound->play(0);
+
+            currentState--;
+        }
+        else if (currentKeyState[SDL_SCANCODE_RETURN]) {
+            selectSound->play(0);
+
+            return currentState;
+        }
+        else if (currentKeyState[SDL_SCANCODE_ESCAPE]) {
+            selectSound->play(0);
+
+            return - 2;
+        }
     }
 
     currentState = (currentState + unlockedLevels) % unlockedLevels;

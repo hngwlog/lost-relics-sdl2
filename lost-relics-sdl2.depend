@@ -1,22 +1,23 @@
 # depslib dependency file v1.0
-1744095228 source:e:\lost-relics-sdl2\src\init\defs.cpp
+1744117293 source:e:\lost-relics-sdl2\src\init\defs.cpp
 	"../../include/init/defs.h"
 
-1744095226 e:\lost-relics-sdl2\include\init\defs.h
+1744117284 e:\lost-relics-sdl2\include\init\defs.h
 	<SDL.h>
 	<SDL_ttf.h>
+	"music_manager.h"
 
-1744053530 source:e:\lost-relics-sdl2\main.cpp
+1744113547 source:e:\lost-relics-sdl2\main.cpp
 	"include/init/defs.h"
 	"include/init/graphics.h"
 	"include/game_state/manager.h"
 
-1744053520 e:\lost-relics-sdl2\include\init\graphics.h
+1744113247 e:\lost-relics-sdl2\include\init\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 
-1744053514 source:e:\lost-relics-sdl2\src\init\graphics.cpp
+1744118063 source:e:\lost-relics-sdl2\src\init\graphics.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -40,7 +41,7 @@
 	<SDL.h>
 	<string>
 
-1744106309 source:e:\lost-relics-sdl2\src\game_state\home_screen.cpp
+1744118420 source:e:\lost-relics-sdl2\src\game_state\home_screen.cpp
 	"../../include/game_state/home_screen.h"
 
 1744082433 e:\lost-relics-sdl2\include\game_state\home_screen.h
@@ -64,13 +65,12 @@
 1743613376 e:\lost-relics-sdl2\include\game_state\quit_screen.h
 	"../init/graphics.h"
 
-1744107703 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
+1744118793 source:e:\lost-relics-sdl2\src\game_state\manager.cpp
 	<SDL.h>
 	"../../include/init/defs.h"
 	"../../include/init/timer.h"
 	"../../include/game_state/manager.h"
 	"../../include/game_state/play.h"
-	<iostream>
 
 1743603466 e:\lost-relics-sdl2\include\game_state\manager.h
 	"home_screen.h"
@@ -83,7 +83,7 @@
 	<string>
 	<vector>
 
-1744107364 source:e:\lost-relics-sdl2\src\game_state\level_select_screen.cpp
+1744118529 source:e:\lost-relics-sdl2\src\game_state\level_select_screen.cpp
 	"../../include/init/defs.h"
 	"../../include/game_state/level_select_screen.h"
 	<fstream>
@@ -114,7 +114,7 @@
 	<fstream>
 	<vector>
 
-1744112194 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
+1744118096 source:e:\lost-relics-sdl2\src\game_objects\map.cpp
 	"../../include/game_objects/map.h"
 
 1744110438 source:e:\lost-relics-sdl2\src\animation\collision.cpp
@@ -125,7 +125,7 @@
 	<SDL.h>
 	"../init/graphics.h"
 
-1744110567 source:e:\lost-relics-sdl2\src\game_objects\player.cpp
+1744115292 source:e:\lost-relics-sdl2\src\game_objects\player.cpp
 	"../../include/game_objects/player.h"
 	"../../include/init/defs.h"
 
@@ -138,7 +138,7 @@
 1744109204 source:e:\lost-relics-sdl2\src\game_objects\map_loader.cpp
 	"../../include/game_objects/map.h"
 
-1744108449 source:e:\lost-relics-sdl2\src\game_objects\map_collision.cpp
+1744118322 source:e:\lost-relics-sdl2\src\game_objects\map_collision.cpp
 	"../../include/game_objects/map.h"
 
 1744047594 source:e:\lost-relics-sdl2\src\game_objects\enemy.cpp
@@ -148,4 +148,12 @@
 	"../init/graphics.h"
 	"../animation/animation.h"
 	"../animation/collision.h"
+
+1744118169 source:e:\lost-relics-sdl2\src\init\music_manager.cpp
+	"../../include/init/defs.h"
+	"../../include/init/music_manager.h"
+
+1744114363 e:\lost-relics-sdl2\include\init\music_manager.h
+	<SDL_mixer.h>
+	<string>
 

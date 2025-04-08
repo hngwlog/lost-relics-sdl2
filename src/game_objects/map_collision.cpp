@@ -21,6 +21,8 @@ void Map::playerAndCoins() {
     for (auto& coin: coins) {
         if (coin->isChecked) continue;
         if (player->getBox()->check(coin->getBox(), false) != COLLISION_STATE::NONE) {
+            coinSound->play(0);
+
             newCoinCollected = true;
             coinsCollected++;
             coin->isChecked = true;
@@ -125,7 +127,11 @@ void Map::enemiesAndTraps() {
 
     for (auto& enemy: enemies) {
         if (enemy->hit) continue;
-        for (auto& trap: traps) if (trap->getObjState() && trap->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) enemy->takeHit();
+        for (auto& trap: traps) if (trap->getObjState() && trap->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) {
+            hitEnemySound->play(0);
+
+            enemy->takeHit();
+        }
     }
 }
 
@@ -148,6 +154,8 @@ void Map::enemiesAndPlayer() {
         if (enemy->hit) continue;
         if (player->attack->isAttacking) {
             if (player->attack->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) {
+                hitEnemySound->play(0);
+
                 enemy->takeHit();
                 score += 500;
             }

@@ -71,9 +71,21 @@ int HomeScreen::update(const int& deltaTime) {
     if (timeDelay <= 0) {
         timeDelay = 200;
 
-        if (currentKeyState[SDL_SCANCODE_DOWN]) currentState++;
-        else if (currentKeyState[SDL_SCANCODE_UP]) currentState--;
-        else if (currentKeyState[SDL_SCANCODE_RETURN]) return currentState;
+        if (currentKeyState[SDL_SCANCODE_DOWN]) {
+            selectSound->play(0);
+
+            currentState++;
+        }
+        else if (currentKeyState[SDL_SCANCODE_UP]) {
+            selectSound->play(0);
+
+            currentState--;
+        }
+        else if (currentKeyState[SDL_SCANCODE_RETURN]) {
+            selectSound->play(0);
+
+            return currentState;
+        }
     }
 
     currentState = (currentState + (int)menuItems.size()) % (int)menuItems.size();

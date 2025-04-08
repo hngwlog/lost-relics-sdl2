@@ -28,6 +28,46 @@ bool initSDL() {
     return true;
 }
 
+bool initMusic() {
+
+    gameMusic = new MusicManager();
+    gameMusic->load("assets/sounds/game_music.mp3");
+
+    jumpSound = new MusicManager();
+    jumpSound->load("assets/sounds/jump.wav");
+    jumpSound->setVolume(10);
+
+    coinSound = new MusicManager();
+    coinSound->load("assets/sounds/coin.wav");
+    coinSound->setVolume(15);
+
+    dashSound = new MusicManager();
+    dashSound->load("assets/sounds/dash.wav");
+    dashSound->setVolume(25);
+
+    attackSound = new MusicManager();
+    attackSound->load("assets/sounds/attack.wav");
+    attackSound->setVolume(60);
+
+    selectSound = new MusicManager();
+    selectSound->load("assets/sounds/select.mp3");
+    selectSound->setVolume(70);
+
+    hitEnemySound = new MusicManager();
+    hitEnemySound->load("assets/sounds/hit_enemy.wav");
+    hitEnemySound->setVolume(50);
+
+    loseSound = new MusicManager();
+    loseSound->load("assets/sounds/lose.wav");
+    loseSound->setVolume(80);
+
+    winSound = new MusicManager();
+    winSound->load("assets/sounds/win.wav");
+    winSound->setVolume(80);
+
+    return true;
+}
+
 Texture::Texture() {
 
     width = 0;
