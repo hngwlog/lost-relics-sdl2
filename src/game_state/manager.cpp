@@ -219,6 +219,8 @@ int playLevel(int level) {
                 gameMusic->stop();
                 winSound->play(0);
 
+                levelSelectScreen->unlockLevel(level + 1);
+
                 int score = game->renderWin();
                 levelSelectScreen->levels[level].score = std::max(levelSelectScreen->levels[level].score, score);
                 levelSelectScreen->unlockLevel(level);

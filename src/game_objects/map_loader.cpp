@@ -151,8 +151,8 @@ void Map::loadRandomEnemy(const int& deltaTime) {
 
 void Map::loadRandomCoin(const int& deltaTime) {
 
-    if (delayTime % 1000 <= 3) {
-        if (random(0, 2)) {
+    if (delayTime == 3000) {
+        if (!random(0, 3)) {
             GameObject* coin = new GameObject();
             coin->init("assets/images/game_objects/coin_idle.png", {25, 25}, canSpawn[random(0, (int)canSpawn.size() - 1)], {6, 1}, {{6, 0}});
             coins.push_back(coin);

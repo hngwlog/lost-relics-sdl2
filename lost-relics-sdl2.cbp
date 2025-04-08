@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="assets/data/high_score/high_score.txt" />
 		<Unit filename="assets/data/map/1.txt" />
+		<Unit filename="assets/data/map/2.txt" />
 		<Unit filename="assets/fonts/karmatic_arcade.ttf" />
 		<Unit filename="assets/fonts/matrix_mono.ttf" />
 		<Unit filename="assets/images/background/background.png" />
@@ -54,6 +55,9 @@
 		<Unit filename="assets/images/game_objects/coin_idle.png" />
 		<Unit filename="assets/images/game_objects/coin_pick_up.png" />
 		<Unit filename="assets/images/game_objects/door.png" />
+		<Unit filename="assets/images/game_objects/health_box.png" />
+		<Unit filename="assets/images/game_objects/health_box_opened.png" />
+		<Unit filename="assets/images/game_objects/health_box_opening.png" />
 		<Unit filename="assets/images/game_objects/spike_down.png" />
 		<Unit filename="assets/images/game_objects/spike_top.png" />
 		<Unit filename="assets/images/game_objects/stone.png" />
@@ -86,6 +90,7 @@
 		<Unit filename="assets/images/tiles/18.png" />
 		<Unit filename="assets/images/tiles/19.png" />
 		<Unit filename="assets/images/tiles/2.png" />
+		<Unit filename="assets/images/tiles/20.png" />
 		<Unit filename="assets/images/tiles/3.png" />
 		<Unit filename="assets/images/tiles/4.png" />
 		<Unit filename="assets/images/tiles/5.png" />

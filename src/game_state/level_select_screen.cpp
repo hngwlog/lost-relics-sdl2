@@ -45,21 +45,23 @@ void LevelSelectScreen::init(int totalLevels) {
     std::ifstream scoreFile(path.c_str());
     if (scoreFile.fail()) logErrorAndExit("Could not load high score file! %s\n", "level_select_screen.cpp");
 
+    int lastLevel = - 1;
+
     for (int i = 0; i < totalLevels; i++) {
         Level level;
-        level.label = "Level " + std::to_string(i + 1) + (i > 0 ? " - Coming soon..." : "");
+        level.label = "Level " + std::to_string(i + 1) + (i > 1 ? " - Coming soon..." : (i > 0 ? " - Locked" : ""));
         level.texture = new Texture();
         level.texture->loadFromText(level.label, {255, 255, 255});
         level.yPos = yStart;
         level.texture->setPosition({100, level.yPos});
         scoreFile >> level.score;
+        if (level.score > 0) lastLevel = i;
         std::string scoreLabel = "HI: " + std::to_string(level.score);
         level.highScore = new Texture();
         level.highScore->loadFromText(scoreLabel, {255, 255, 255});
         level.highScore->setPosition({600, level.yPos});
         levels.push_back(level);
         yStart += 40;
-
     }
 
     scoreFile.close();
@@ -72,7 +74,11 @@ void LevelSelectScreen::init(int totalLevels) {
     quit->setPosition({(SCREEN_WIDTH - quit->getWidth()) / 2, 500});
 
     isLevelUnlocked.assign(totalLevels, false);
-    isLevelUnlocked[0] = true;
+
+    for (int i = 0; i <= lastLevel + 1; i++) {
+        if (i > 1) break;
+        unlockLevel(i);
+    }
 }
 
 int LevelSelectScreen::update(const int& deltaTime) {
@@ -126,10 +132,16 @@ int LevelSelectScreen::update(const int& deltaTime) {
 
 void LevelSelectScreen::unlockLevel(int level) {
 
-    if (isLevelUnlocked[level] == false) {
-        isLevelUnlocked[level] = true;
-        unlockedLevels++;
-    }
+    if (isLevelUnlocked[level]) return ;
+    isLevelUnlocked[level] = true;
+    unlockedLevels++;
+
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 15);
+
+    levels[level].label = "Level " + std::to_string(level + 1);
+    levels[level].texture->loadFromText(levels[level].label, {255, 255, 255});
+    levels[level].texture->setPosition({100, levels[level].yPos});
 }
 
 void LevelSelectScreen::render() {

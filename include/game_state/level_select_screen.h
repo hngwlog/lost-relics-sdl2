@@ -35,7 +35,7 @@ private:
     Texture* background = nullptr;
     Texture* title = nullptr;
     Texture* quit = nullptr;
-    int unlockedLevels = 1;
+    int unlockedLevels = 0;
     int currentState = - 1;
     int timeDelay = 0;
 };
