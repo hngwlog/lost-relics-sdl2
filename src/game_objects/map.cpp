@@ -37,7 +37,10 @@ void Map::update(const int& deltaTime) {
     for (auto& trap: traps) trap->update(deltaTime);
     for (auto& stone: stones) stone->applyPhysics(deltaTime);
     for (auto& wall: walls) wall->update(deltaTime);
+    healthBox->update(deltaTime);
     for (auto& enemy: enemies) enemy->update(deltaTime);
+    loadRandomEnemy(deltaTime);
+    loadRandomCoin(deltaTime);
 
     score -= 5;
 
@@ -80,6 +83,8 @@ void Map::render() {
     for (auto& wall: walls) wall->render();
 
     door->render();
+
+    healthBox->render();
 
     for (auto& enemy: enemies) enemy->render();
 

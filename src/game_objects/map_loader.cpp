@@ -1,5 +1,7 @@
 #include "../../include/game_objects/map.h"
 
+std::vector<std::pair<int, int>> canSpawn;
+
 void Map::loadMap(std::string path) {
 
     std::ifstream mapFile(path.c_str());
@@ -20,7 +22,10 @@ void Map::loadBackground(std::ifstream& mapFile) {
         for (int j = 0; j < CNT_BLOCK_X; j++) {
             int type = 0;
             mapFile >> type;
-            if (!type) continue;
+            if (!type) {
+                canSpawn.push_back({j * GROUND_SIZE, i * GROUND_SIZE});
+                continue;
+            }
             std::string typeTile = tmp + std::to_string(type) + ".png";
             tiles[i][j].init(typeTile, {GROUND_SIZE, GROUND_SIZE}, {j * GROUND_SIZE, i * GROUND_SIZE}, {1, 1}, {{1, 0}});
         }
@@ -114,6 +119,10 @@ void Map::loadGameObject(std::ifstream& mapFile) {
     mapFile >> x >> y;
     door = new GameObject();
     door->init("assets/images/game_objects/door.png", {60, 80}, {x, y}, {1, 1}, {{1, 0}});
+
+    mapFile >> x >> y;
+    healthBox = new GameObject();
+    healthBox->init("assets/images/game_objects/health_box.png", {50, 30}, {x, y}, {12, 1}, {{12, 0}});
 }
 
 void Map::loadEnemy(std::ifstream& mapFile) {
@@ -125,5 +134,28 @@ void Map::loadEnemy(std::ifstream& mapFile) {
         mapFile >> x >> y >> type >> faceRight;
         Enemy* enemy = new Enemy({x, y}, type, faceRight);
         enemies.push_back(enemy);
+    }
+}
+
+void Map::loadRandomEnemy(const int& deltaTime) {
+
+    delayTime -= deltaTime;
+    if (delayTime <= 0) {
+        delayTime = 3000;
+        if (random(0, 1)) {
+            Enemy* enemy = new Enemy(canSpawn[random(0, (int)canSpawn.size() - 1)], random(0, 2), random(0, 1));
+            enemies.push_back(enemy);
+        }
+    }
+}
+
+void Map::loadRandomCoin(const int& deltaTime) {
+
+    if (delayTime % 1000 <= 3) {
+        if (random(0, 2)) {
+            GameObject* coin = new GameObject();
+            coin->init("assets/images/game_objects/coin_idle.png", {25, 25}, canSpawn[random(0, (int)canSpawn.size() - 1)], {6, 1}, {{6, 0}});
+            coins.push_back(coin);
+        }
     }
 }

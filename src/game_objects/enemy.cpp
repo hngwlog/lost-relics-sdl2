@@ -1,5 +1,5 @@
+#include "../../include/init/defs.h"
 #include "../../include/game_objects/enemy.h"
-
 
 Enemy::Enemy(std::pair<int, int> startPosition, int type, bool faceRight) {
 
@@ -9,7 +9,7 @@ Enemy::Enemy(std::pair<int, int> startPosition, int type, bool faceRight) {
             deathPath = "assets/images/enemy/mushroom/death.png";
             walkFrameCount = {8, 1};
             deathFrameCount = {7, 1};
-            speed = 150;
+            speed = random(125, 175);
             SIZE = {50, 50};
             break;
 
@@ -18,7 +18,7 @@ Enemy::Enemy(std::pair<int, int> startPosition, int type, bool faceRight) {
             deathPath = "assets/images/enemy/slime/death.png";
             walkFrameCount = {15, 1};
             deathFrameCount = {7, 1};
-            speed = 100;
+            speed = random(75, 125);
             SIZE = {50, 50};
             break;
         case 2:
@@ -26,7 +26,7 @@ Enemy::Enemy(std::pair<int, int> startPosition, int type, bool faceRight) {
             deathPath = "assets/images/enemy/worm/death.png";
             walkFrameCount = {6, 1};
             deathFrameCount = {7, 1};
-            speed = 75;
+            speed = random(50, 100);
             SIZE = {50, 20};
             break;
     }

@@ -167,6 +167,26 @@ void Map::enemiesAndPlayer() {
     }
 }
 
+void Map::healthBoxAndPlayer() {
+
+    if (player->attack->isAttacking) {
+        if (!isOpened && healthBox->getBox()->check(player->attack->getBox(), true) != COLLISION_STATE::NONE) {
+            isOpened = true;
+            std::pair<int, int> position = healthBox->getPosition();
+            healthBox = new GameObject();
+            healthBox->init("assets/images/game_objects/health_box_opening.png", {50, 30}, position, {6, 1}, {{6, 0}});
+        }
+    }
+    if (isOpened && !done && healthBox->animation->isAnimationDone()) {
+        done = true;
+        std::pair<int, int> position = healthBox->getPosition();
+        healthBox = new GameObject();
+        healthBox->init("assets/images/game_objects/health_box_opened.png", {50, 30}, position, {1, 1}, {{1, 0}});
+        if (player->health < 4) player->health++;
+        score += 5000;
+    }
+}
+
 void Map::checkAllCollision() {
 
     playerAndTiles();
@@ -181,4 +201,5 @@ void Map::checkAllCollision() {
     enemiesAndTraps();
     enemiesAndWalls();
     enemiesAndPlayer();
+    healthBoxAndPlayer();
 }

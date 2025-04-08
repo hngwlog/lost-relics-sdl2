@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "music_manager.h"
+#include <random>
+#include <chrono>
 
 const int SCREEN_WIDTH = 1000;
 const int SCREEN_HEIGHT = 600;
@@ -26,3 +28,5 @@ enum HOMESCREEN {
 };
 
 void logErrorAndExit(const char* msg, const char* error);
+
+long long random(long long l, long long r);

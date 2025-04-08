@@ -23,6 +23,8 @@ public:
     void loadPlayer(std::ifstream& mapFile);
     void loadGameObject(std::ifstream& mapFile);
     void loadEnemy(std::ifstream& mapFile);
+    void loadRandomEnemy(const int& deltaTime);
+    void loadRandomCoin(const int& deltaTime);
 
     void checkAllCollision();
     void playerAndTiles();
@@ -37,6 +39,7 @@ public:
     void enemiesAndTraps();
     void enemiesAndWalls();
     void enemiesAndPlayer();
+    void healthBoxAndPlayer();
 
     void update(const int& deltaTime);
 
@@ -75,5 +78,10 @@ private:
     int totalEnemies;
     std::vector<Enemy*> enemies;
 
+    bool isOpened = false;
+    bool done = false;
+    GameObject* healthBox;
+
     int state = 0;
+    int delayTime = 3000;
 };
