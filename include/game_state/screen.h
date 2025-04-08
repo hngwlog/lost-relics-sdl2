@@ -1,12 +1,16 @@
 #pragma once
 #include "../init/graphics.h"
 
-class InstructionScreen {
+class Screen {
 public:
-    InstructionScreen();
-    ~InstructionScreen();
+    Screen();
+    ~Screen();
 
     void init();
+
+    void updateText(const std::string& text);
+
+    void updateFile(const std::string& path);
 
     void render();
 

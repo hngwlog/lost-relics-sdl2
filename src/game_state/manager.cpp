@@ -6,9 +6,9 @@
 
 HomeScreen* homeScreen;
 LevelSelectScreen* levelSelectScreen;
-InstructionScreen* instructionScreen;
-OptionsScreen* optionsScreen;
-QuitScreen* quitScreen;
+Screen* instructionScreen;
+Screen* optionsScreen;
+Screen* quitScreen;
 
 int loadHomeScreen() {
 
@@ -256,8 +256,9 @@ int playLevel(int level) {
 
 int loadInstruction() {
 
-    instructionScreen = new InstructionScreen();
+    instructionScreen = new Screen();
     instructionScreen->init();
+    instructionScreen->updateFile("assets/images/background/tutorial.png");
 
     bool quit = false;
     SDL_Event event;
@@ -310,8 +311,9 @@ int loadInstruction() {
 
 int loadOptions() {
 
-    optionsScreen = new OptionsScreen();
+    optionsScreen = new Screen();
     optionsScreen->init();
+    optionsScreen->updateText("This feature will be update soon!");
 
     bool quit = false;
     SDL_Event event;
@@ -364,8 +366,9 @@ int loadOptions() {
 
 int loadQuit() {
 
-    quitScreen = new QuitScreen();
+    quitScreen = new Screen();
     quitScreen->init();
+    quitScreen->updateText("ARE YOU SURE TO QUIT? Y/N");
 
     bool quit = false;
     SDL_Event event;

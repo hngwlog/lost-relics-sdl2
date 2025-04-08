@@ -114,11 +114,10 @@
 		<Unit filename="include/game_objects/map.h" />
 		<Unit filename="include/game_objects/player.h" />
 		<Unit filename="include/game_state/home_screen.h" />
-		<Unit filename="include/game_state/instruction_screen.h" />
 		<Unit filename="include/game_state/level_select_screen.h" />
 		<Unit filename="include/game_state/manager.h" />
 		<Unit filename="include/game_state/play.h" />
-		<Unit filename="include/game_state/quit_screen.h" />
+		<Unit filename="include/game_state/screen.h" />
 		<Unit filename="include/init/defs.h" />
 		<Unit filename="include/init/graphics.h" />
 		<Unit filename="include/init/music_manager.h" />
@@ -133,11 +132,10 @@
 		<Unit filename="src/game_objects/map_loader.cpp" />
 		<Unit filename="src/game_objects/player.cpp" />
 		<Unit filename="src/game_state/home_screen.cpp" />
-		<Unit filename="src/game_state/instruction_screen.cpp" />
 		<Unit filename="src/game_state/level_select_screen.cpp" />
 		<Unit filename="src/game_state/manager.cpp" />
 		<Unit filename="src/game_state/play.cpp" />
-		<Unit filename="src/game_state/quit_screen.cpp" />
+		<Unit filename="src/game_state/screen.cpp" />
 		<Unit filename="src/init/defs.cpp" />
 		<Unit filename="src/init/graphics.cpp" />
 		<Unit filename="src/init/music_manager.cpp" />
