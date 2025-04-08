@@ -3,10 +3,7 @@
 
 Collision::Collision(Texture* body): body(body) {}
 
-Collision::~Collision() {
-
-    delete body;
-}
+Collision::~Collision() {}
 
 int Collision::check(Collision* other, bool push) {
 

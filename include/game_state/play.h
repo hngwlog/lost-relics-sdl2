@@ -15,9 +15,9 @@ public:
 
     void renderPause();
 
-    void renderLose();
+    int renderLose();
 
-    void renderWin();
+    int renderWin();
 
     int getGameState();
 

@@ -49,6 +49,14 @@ void Map::loadBackground(std::ifstream& mapFile) {
     coinsCount->loadFromText(label, {255, 255, 0});
     coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second + 5});
 
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 15);
+
+    scoreHud = new Texture();
+    std::string scoreLabel = "SCORE: " + std::to_string(score);
+    scoreHud->loadFromText(scoreLabel, {255, 255, 255});
+    scoreHud->setPosition({(SCREEN_WIDTH - scoreHud->getWidth()) / 2, 10});
+
 }
 
 void Map::loadPlayer(std::ifstream& mapFile) {
@@ -78,7 +86,7 @@ void Map::loadGameObject(std::ifstream& mapFile) {
         mapFile >> x >> y >> type;
         if (type) trap->init("assets/images/game_objects/spike_top.png", {50, 50}, {x, y}, {7, 1}, {{7, 0}});
         else trap->init("assets/images/game_objects/spike_down.png", {50, 50}, {x, y}, {7, 1}, {{7, 0}});
-        trap->setDelayTime(1000);
+        trap->setDelayTime(2000);
         traps.push_back(trap);
     }
 

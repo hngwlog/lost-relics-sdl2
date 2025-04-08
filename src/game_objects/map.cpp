@@ -5,6 +5,9 @@ Map::Map() {
     tiles = new GameObject* [CNT_BLOCK_Y];
 
     for (int i = 0; i < CNT_BLOCK_Y; i++) tiles[i] = new GameObject[CNT_BLOCK_X];
+
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 15);
 }
 
 Map::~Map() {
@@ -15,6 +18,7 @@ Map::~Map() {
     delete lifesIcon;
     delete coinHud;
     delete coinsCount;
+    delete scoreHud;
     delete player;
     for (auto& coin: coins) delete coin;
     for (auto& trap: traps) delete trap;
@@ -35,7 +39,9 @@ void Map::update(const int& deltaTime) {
     for (auto& wall: walls) wall->update(deltaTime);
     for (auto& enemy: enemies) enemy->update(deltaTime);
 
-    if (!player->health) state = - 1;
+    score -= 5;
+
+    if (score < 0 || !player->health) state = - 1;
 }
 
 void Map::render() {
@@ -56,9 +62,7 @@ void Map::render() {
     coinHud->render();
 
     if (newCoinCollected) {
-        std::string path = "assets/fonts/matrix_mono.ttf";
-        gFont = TTF_OpenFont(path.c_str(), 15);
-
+        coinsCount->free();
         std::string label = "x" + std::to_string(coinsCollected);
         coinsCount->loadFromText(label, {255, 255, 0});
         coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second + 5});
@@ -78,6 +82,12 @@ void Map::render() {
     door->render();
 
     for (auto& enemy: enemies) enemy->render();
+
+    scoreHud->free();
+    std::string scoreLabel = "SCORE: " + std::to_string(score);
+    scoreHud->loadFromText(scoreLabel, {255, 255, 255});
+    scoreHud->setPosition({(SCREEN_WIDTH - scoreHud->getWidth()) / 2, 10});
+    scoreHud->render();
 }
 
 int Map::getState() {

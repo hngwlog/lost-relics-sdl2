@@ -174,7 +174,7 @@ void Player::updateAnimation() {
 
 void Player::takeHit(const int& deltaTime) {
 
-    if (healDelay == 3000) {
+    if (healDelay == 1500) {
         animation->initFrameLimit({3, 8});
         lostHeart->setPosition(healthBar[health - 1]->getPosition());
         lostHeartAnimation->initFrameLimit({5, 0});
@@ -187,7 +187,7 @@ void Player::takeHit(const int& deltaTime) {
         health--;
 
         isTakingHit = false;
-        healDelay = 3000;
+        healDelay = 1500;
 
         animation->initFrameLimit({4, 5});
     }

@@ -5,10 +5,12 @@ Game::Game() {}
 
 Game::~Game() {
 
+    delete chosenMap;
     delete background;
-    delete quit;
+    delete pause;
     delete lose;
     delete win;
+    delete quit;
 }
 
 void Game::init(int level) {
@@ -63,18 +65,20 @@ void Game::renderPause() {
     pause->render();
 }
 
-void Game::renderLose() {
+int Game::renderLose() {
 
     background->render();
     lose->render();
     quit->render();
+    return chosenMap->score;
 }
 
-void Game::renderWin() {
+int Game::renderWin() {
 
     background->render();
     win->render();
     quit->render();
+    return chosenMap->score;
 }
 
 int Game::getGameState() {

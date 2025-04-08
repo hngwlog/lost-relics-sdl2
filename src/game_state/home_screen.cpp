@@ -8,6 +8,9 @@ HomeScreen::~HomeScreen() {
     delete gameName;
 
     for (auto& menuItem: menuItems) delete menuItem.texture;
+
+    delete selected;
+    delete selectedAnimation;
 }
 
 void HomeScreen::init() {
@@ -41,6 +44,12 @@ void HomeScreen::init() {
         menuItems.back().texture->setPosition({(SCREEN_WIDTH - menuItems.back().texture->getWidth()) / 2, menuItems.back().yPos});
         yStart += 50;
     }
+
+    selected = new Texture();
+    selected->loadFromFile("assets/images/hud/select_icon.png");
+    selected->setSize({25, 25});
+
+    selectedAnimation = new Animation("assets/images/hud/select_icon.png", {5, 1}, 100);
 }
 
 void HomeScreen::render() {
@@ -49,6 +58,8 @@ void HomeScreen::render() {
     gameName->render(false);
 
     for (auto& menuItem: menuItems) menuItem.texture->render(false);
+
+    selected->render(false, selectedAnimation->getCurrentFrameRect());
 }
 
 int HomeScreen::update(const int& deltaTime) {
@@ -69,14 +80,11 @@ int HomeScreen::update(const int& deltaTime) {
     timeDelay -= deltaTime;
 
     if (currentState != previousState) {
-        /** Reset previous selected label */
-        if (previousState != - 1) menuItems[previousState].texture->loadFromText(menuItems[previousState].label, {255, 255, 255});
-
-        /** Highlight selected menu item */
-        std::string selectedLabel = "> " + menuItems[currentState].label;
-        menuItems[currentState].texture->loadFromText(selectedLabel, {255, 255, 255});
-        menuItems[currentState].texture->setPosition({(SCREEN_WIDTH - menuItems[currentState].texture->getWidth()) / 2 + 10, menuItems[currentState].yPos});
+        selected->setPosition({(SCREEN_WIDTH - menuItems[currentState].texture->getWidth()) / 2 - selected->getWidth() - 20, menuItems[currentState].yPos + 5});
     }
+
+    selectedAnimation->update(deltaTime);
+
     return - 1;
 }
 

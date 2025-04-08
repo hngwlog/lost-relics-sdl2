@@ -1,13 +1,25 @@
 #include "../../include/init/defs.h"
 #include "../../include/game_state/level_select_screen.h"
+#include <fstream>
 
 LevelSelectScreen::LevelSelectScreen() {};
 
 LevelSelectScreen::~LevelSelectScreen() {
 
+    std::string path = "assets/data/high_score/high_score.txt";
+    std::ofstream scoreFile(path);
+    if (scoreFile.fail()) logErrorAndExit("Could not load score file!", "level_select_screen.cpp");
+
+    for (auto& level: levels) scoreFile << level.score << '\n';
+
+    scoreFile.close();
+
     delete background;
     delete title;
-    for (auto& level: levels) delete level.texture;
+    for (auto& level: levels) {
+        delete level.texture;
+        delete level.highScore;
+    }
     delete quit;
 }
 
@@ -29,6 +41,10 @@ void LevelSelectScreen::init(int totalLevels) {
 
     int yStart = 200;
 
+    path = "assets/data/high_score/high_score.txt";
+    std::ifstream scoreFile(path.c_str());
+    if (scoreFile.fail()) logErrorAndExit("Could not load high score file! %s\n", "level_select_screen.cpp");
+
     for (int i = 0; i < totalLevels; i++) {
         Level level;
         level.label = "Level " + std::to_string(i + 1) + (i > 0 ? " - Coming soon..." : "");
@@ -36,10 +52,19 @@ void LevelSelectScreen::init(int totalLevels) {
         level.texture->loadFromText(level.label, {255, 255, 255});
         level.yPos = yStart;
         level.texture->setPosition({100, level.yPos});
+        scoreFile >> level.score;
+        std::string scoreLabel = "HI: " + std::to_string(level.score);
+        level.highScore = new Texture();
+        level.highScore->loadFromText(scoreLabel, {255, 255, 255});
+        level.highScore->setPosition({600, level.yPos});
         levels.push_back(level);
         yStart += 40;
+
     }
 
+    scoreFile.close();
+
+    path = "assets/fonts/matrix_mono.ttf";
     gFont = TTF_OpenFont(path.c_str(), 15);
 
     quit = new Texture();
@@ -95,6 +120,15 @@ void LevelSelectScreen::render() {
 
     background->render(false);
     title->render(false);
-    for (auto& level: levels) level.texture->render(false);
+    for (auto& level: levels) {
+        level.texture->render();
+        if (level.previousScore != level.score) {
+            std::string scoreLabel = "HI: " + std::to_string(level.score);
+            level.highScore->loadFromText(scoreLabel, {255, 255, 255});
+            level.highScore->setPosition({600, level.yPos});
+        }
+        level.previousScore = level.score;
+        level.highScore->render();
+    }
     quit->render(false);
 }

@@ -33,8 +33,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="assets/data/map/1.txt" />
-		<Unit filename="assets/fonts/brownie_stencil.ttf" />
-		<Unit filename="assets/fonts/cowboy_adventure.ttf" />
+		<Unit filename="assets/fonts/karmatic_arcade.ttf" />
+		<Unit filename="assets/fonts/matrix_mono.ttf" />
 		<Unit filename="assets/images/background/background.png" />
 		<Unit filename="assets/images/background/home_screen.jpg" />
 		<Unit filename="assets/images/background/tutorial.png" />

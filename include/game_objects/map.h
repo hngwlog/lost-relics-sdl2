@@ -16,6 +16,8 @@ public:
     Map();
     ~Map();
 
+    int score = 25000;
+
     void loadMap(std::string path);
     void loadBackground(std::ifstream& mapFile);
     void loadPlayer(std::ifstream& mapFile);
@@ -43,7 +45,6 @@ public:
     int getState();
 
 private:
-    Map* chosenMap = nullptr;
     GameObject** tiles;
 
     Texture* healthMenuHud = nullptr;
@@ -53,6 +54,8 @@ private:
     int coinsCollected = 0;
     Texture* coinHud = nullptr;
     Texture* coinsCount = nullptr;
+
+    Texture* scoreHud = nullptr;
 
     Player* player = nullptr;
 

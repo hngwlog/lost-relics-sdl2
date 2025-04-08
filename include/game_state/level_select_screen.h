@@ -8,6 +8,10 @@ struct Level {
     std::string label;
     Texture* texture;
 
+    int previousScore = - 1;
+    int score;
+    Texture* highScore;
+
     int yPos;
 };
 
@@ -17,6 +21,7 @@ public:
     ~LevelSelectScreen();
 
     std::vector<bool> isLevelUnlocked;
+    std::vector<Level> levels;
 
     void init(int totalLevels);
 
@@ -30,7 +35,6 @@ private:
     Texture* background = nullptr;
     Texture* title = nullptr;
     Texture* quit = nullptr;
-    std::vector<Level> levels;
     int unlockedLevels = 1;
     int currentState = - 1;
     int timeDelay = 0;

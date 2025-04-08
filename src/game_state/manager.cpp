@@ -190,7 +190,9 @@ int playLevel(int level) {
         else {
             state = game->getGameState();
             if (state < 0) {
-                game->renderLose();
+                int score = game->renderLose();
+                score = 0;
+                levelSelectScreen->levels[level].score = std::max(levelSelectScreen->levels[level].score, score);
                 const Uint8* currentKeyState = SDL_GetKeyboardState(nullptr);
                 if (currentKeyState[SDL_SCANCODE_R]) {
                     delete game;
@@ -205,7 +207,8 @@ int playLevel(int level) {
             }
             else if (state == 0) game->render();
             else {
-                game->renderWin();
+                int score = game->renderWin();
+                levelSelectScreen->levels[level].score = std::max(levelSelectScreen->levels[level].score, score);
                 levelSelectScreen->unlockLevel(level);
                 const Uint8* currentKeyState = SDL_GetKeyboardState(nullptr);
                 if (currentKeyState[SDL_SCANCODE_R]) {

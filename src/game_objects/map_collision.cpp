@@ -26,16 +26,18 @@ void Map::playerAndCoins() {
             coin->isChecked = true;
             std::pair<int, int> objPosition = coin->getPosition();
             coin->init("assets/images/game_objects/coin_pick_up.png", {25, 50}, {objPosition.first, objPosition.second - 25}, {6, 1}, {{6, 0}});
+            score += 1000;
         }
     }
 }
 
 void Map::playerAndTraps() {
 
-    if (!player->isTakingHit) {
-        for (auto& trap: traps) {
-            if (!trap->getObjState()) continue;
-            if (player->getBox()->check(trap->getBox(), false) != COLLISION_STATE::NONE) player->isTakingHit = true;
+    for (auto& trap: traps) {
+        if (!trap->getObjState() || player->isTakingHit) continue;
+        if (player->getBox()->check(trap->getBox(), false) != COLLISION_STATE::NONE) {
+            player->isTakingHit = true;
+            score -= 5000;
         }
     }
 }
@@ -145,9 +147,15 @@ void Map::enemiesAndPlayer() {
     for (auto& enemy: enemies) {
         if (enemy->hit) continue;
         if (player->attack->isAttacking) {
-            if (player->attack->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) enemy->takeHit();
+            if (player->attack->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) {
+                enemy->takeHit();
+                score += 500;
+            }
         }
-        else if (player->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) player->isTakingHit = true;
+        else if (!player->isTakingHit && player->getBox()->check(enemy->getBox(), false) != COLLISION_STATE::NONE) {
+            player->isTakingHit = true;
+            score -= 5000;
+        }
     }
 }
 

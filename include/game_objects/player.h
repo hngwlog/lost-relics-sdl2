@@ -32,7 +32,7 @@ public:
 
     bool isTakingHit = false;
     int health = 4;
-    int healDelay = 3000;
+    int healDelay = 1500;
 
     Attack* attack = nullptr;
 
