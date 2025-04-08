@@ -51,33 +51,6 @@ Made with ❤️ using **C++**, **SDL2**.
 
 ---
 
-## 🚀 Getting Started
-
-### Requirements
-
-- C++ compiler (g++, MSVC, etc.)
-- SDL2 and SDL2 libraries installed
-
-### Build Instructions
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/lost-relics.git
-cd lost-relics
-
-# Build using g++ (example)
-g++ -o LostRelics main.cpp -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
-```
-
-### Run the Game
-
-```bash
-./LostRelics
-```
-
----
-
-
 ## 👨‍💻 Author
 
 - **hngwlog**  
