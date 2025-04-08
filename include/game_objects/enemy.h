@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 #include "../init/graphics.h"
 #include "../animation/animation.h"
 #include "../animation/collision.h"

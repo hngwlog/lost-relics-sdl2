@@ -41,13 +41,13 @@ void Map::loadBackground(std::ifstream& mapFile) {
     coinHud->setSize({30, 30});
     coinHud->setPosition({920, 20});
 
-    std::string fontPath = "assets/fonts/brownie_stencil.ttf";
-    gFont = TTF_OpenFont(fontPath.c_str(), 20);
+    std::string fontPath = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(fontPath.c_str(), 15);
 
     coinsCount = new Texture();
     std::string label = "x" + std::to_string(coinsCollected);
     coinsCount->loadFromText(label, {255, 255, 0});
-    coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second});
+    coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second + 5});
 
 }
 

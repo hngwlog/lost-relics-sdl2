@@ -7,8 +7,6 @@
 
 bool initSDL();
 
-bool initMusic();
-
 class Texture {
 public:
     Texture();

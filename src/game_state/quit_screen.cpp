@@ -16,8 +16,8 @@ void QuitScreen::init() {
     background->setSize({SCREEN_WIDTH, SCREEN_HEIGHT});
     background->setPosition({0, 0});
 
-    std::string path = "assets/fonts/brownie_stencil.ttf";
-    gFont = TTF_OpenFont(path.c_str(), 40);
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 20);
 
     quit = new Texture();
     quit->loadFromText("ARE YOU SURE TO QUIT? Y/N", {255, 255, 255});

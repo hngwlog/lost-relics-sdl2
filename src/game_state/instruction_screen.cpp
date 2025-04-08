@@ -22,8 +22,8 @@ void InstructionScreen::init() {
     content->setSize({SCREEN_WIDTH, SCREEN_HEIGHT});
     content->setPosition({0, 0});
 
-    std::string path = "assets/fonts/brownie_stencil.ttf";
-    gFont = TTF_OpenFont(path.c_str(), 25);
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 15);
 
     quit = new Texture();
     quit->loadFromText("PRESS ENTER TO RETURN HOME!", {255, 255, 255});

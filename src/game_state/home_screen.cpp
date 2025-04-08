@@ -19,14 +19,14 @@ void HomeScreen::init() {
     background->setSize({SCREEN_WIDTH, SCREEN_HEIGHT});
     background->setPosition({0, 0});
 
-    std::string path = "assets/fonts/cowboy_adventure.ttf";
-    gFont = TTF_OpenFont(path.c_str(), 50);
+    std::string path = "assets/fonts/karmatic_arcade.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 70);
 
     gameName = new Texture();
     gameName->loadFromText("Lost Relics", {255, 255, 255});
     gameName->setPosition({(SCREEN_WIDTH - gameName->getWidth()) / 2, 100});
 
-    gFont = TTF_OpenFont(path.c_str(), 20);
+    gFont = TTF_OpenFont(path.c_str(), 30);
     std::vector<std::string> labels = {"Start", "Instruction", "Options", "Quit"};
 
     int yStart = 300;

@@ -18,14 +18,14 @@ void LevelSelectScreen::init(int totalLevels) {
     background->setSize({SCREEN_WIDTH, SCREEN_HEIGHT});
     background->setPosition({0, 0});
 
-    std::string path = "assets/fonts/brownie_stencil.ttf";
-    gFont = TTF_OpenFont(path.c_str(), 40);
+    std::string path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 20);
 
     title = new Texture();
     title->loadFromText("Please select your level!", {255, 255, 255});
     title->setPosition({(SCREEN_WIDTH - title->getWidth()) / 2, 100});
 
-    gFont = TTF_OpenFont(path.c_str(), 30);
+    gFont = TTF_OpenFont(path.c_str(), 15);
 
     int yStart = 200;
 
@@ -40,7 +40,7 @@ void LevelSelectScreen::init(int totalLevels) {
         yStart += 40;
     }
 
-    gFont = TTF_OpenFont(path.c_str(), 20);
+    gFont = TTF_OpenFont(path.c_str(), 15);
 
     quit = new Texture();
     quit->loadFromText("Press ESC to return home!", {255, 255, 255});
@@ -68,8 +68,8 @@ int LevelSelectScreen::update(const int& deltaTime) {
     timeDelay -= deltaTime;
 
     if (currentState != previousState) {
-        std::string path = "assets/fonts/brownie_stencil.ttf";
-        gFont = TTF_OpenFont(path.c_str(), 30);
+        std::string path = "assets/fonts/matrix_mono.ttf";
+        gFont = TTF_OpenFont(path.c_str(), 15);
 
         /** Reset previous selected label */
         if (previousState != - 1) levels[previousState].texture->loadFromText(levels[previousState].label, {255, 255, 255});

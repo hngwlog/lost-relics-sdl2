@@ -56,12 +56,12 @@ void Map::render() {
     coinHud->render();
 
     if (newCoinCollected) {
-        std::string path = "assets/fonts/brownie_stencil.ttf";
-        gFont = TTF_OpenFont(path.c_str(), 20);
+        std::string path = "assets/fonts/matrix_mono.ttf";
+        gFont = TTF_OpenFont(path.c_str(), 15);
 
         std::string label = "x" + std::to_string(coinsCollected);
         coinsCount->loadFromText(label, {255, 255, 0});
-        coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second});
+        coinsCount->setPosition({coinHud->getPosition().first + coinHud->getWidth(), coinHud->getPosition().second + 5});
     }
 
     coinsCount->render();

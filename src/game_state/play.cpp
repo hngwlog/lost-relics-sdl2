@@ -22,13 +22,15 @@ void Game::init(int level) {
     background->setSize({SCREEN_WIDTH, SCREEN_HEIGHT});
     background->setPosition({0, 0});
 
-    path = "assets/fonts/brownie_stencil.ttf";
-    gFont = TTF_OpenFont(path.c_str(), 30);
+    path = "assets/fonts/matrix_mono.ttf";
+    gFont = TTF_OpenFont(path.c_str(), 20);
 
     pause = new Texture();
     pause->loadFromText("PRESS RETURN TO UNPAUSE!", {255, 255, 255});
     pause->setPosition({(SCREEN_WIDTH - pause->getWidth()) / 2, 300});
 
+
+    gFont = TTF_OpenFont(path.c_str(), 30);
     lose = new Texture();
     lose->loadFromText("YOU LOSE!", {255, 0, 0});
     lose->setPosition({(SCREEN_WIDTH - lose->getWidth()) / 2, 100});
@@ -37,6 +39,7 @@ void Game::init(int level) {
     win->loadFromText("YOU WIN!", {255, 0, 0});
     win->setPosition({(SCREEN_WIDTH - win->getWidth()) / 2, 100});
 
+    gFont = TTF_OpenFont(path.c_str(), 15);
     quit = new Texture();
     quit->loadFromText("PRESS R TO RETURN LEVEL SELECT OR H TO RETURN HOME", {255, 255, 255});
     quit->setPosition({(SCREEN_WIDTH - quit->getWidth()) / 2, 300});
