@@ -10,6 +10,12 @@ Your journey begins now. Learn the basics, master your moves, and prepare to unc
 
 Made with ❤️ using **C++**, **SDL2**.
 
+![image](https://github.com/user-attachments/assets/cd02f98c-a76b-4a07-ac9e-ddc39f4f2860)
+![image](https://github.com/user-attachments/assets/9215e757-6054-4af4-a098-8ccd0cae3a16)
+![image](https://github.com/user-attachments/assets/99ac787d-08ab-4a2f-916c-5a570e91218a)
+![image](https://github.com/user-attachments/assets/26937eb6-0f77-4f4e-b118-0803e9449f3f)
+![image](https://github.com/user-attachments/assets/4818c679-d7db-45da-b32e-11d2aa95549c)
+
 ---
 
 ## 🎮 Controls
